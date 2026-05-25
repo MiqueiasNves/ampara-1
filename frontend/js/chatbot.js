@@ -84,7 +84,7 @@ chatMessages.scrollTop =
   chatMessages.scrollHeight;
 
     const response = await fetch(
-      "http://localhost:3000/chat",
+      "/chat",
       {
 
         method: "POST",
