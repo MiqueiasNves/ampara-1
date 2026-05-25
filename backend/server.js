@@ -24,7 +24,7 @@ const genAI = new GoogleGenerativeAI(
 );
 
 const model = genAI.getGenerativeModel({
-  model: "gemini-2.5-pro"
+  model: "gemini-1.5-flash"
 });
 
 
