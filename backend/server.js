@@ -148,8 +148,7 @@ app.post("/chat", async (req, res) => {
 /* PORTA */
 /* ===================================== */
 
-const PORT = 3000;
-
+const PORT = process.env.PORT || 3000;
 
 /* ===================================== */
 /* INICIAR SERVIDOR */
