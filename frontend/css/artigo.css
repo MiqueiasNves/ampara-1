@@ -1,0 +1,323 @@
+/* ========================= */
+/* HERO */
+/* ========================= */
+
+.article-hero {
+
+  min-height: 65vh;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(127,191,159,0.12),
+      rgba(199,184,234,0.12)
+    );
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+
+  padding: 140px 8% 80px;
+}
+
+
+/* ========================= */
+/* HERO CONTENT */
+/* ========================= */
+
+.article-hero-content {
+
+  max-width: 850px;
+}
+
+.article-hero-content span {
+
+  display: inline-block;
+
+  background-color:
+    rgba(127,191,159,0.15);
+
+  color: var(--green-hover);
+
+  padding: 10px 20px;
+
+  border-radius: 30px;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  margin-bottom: 25px;
+}
+
+.article-hero-content h1 {
+
+  font-size: 68px;
+
+  line-height: 1.1;
+
+  margin-bottom: 25px;
+
+  color: var(--gray-text);
+}
+
+.article-hero-content p {
+
+  font-size: 18px;
+
+  line-height: 1.8;
+
+  color: #666;
+}
+
+
+/* ========================= */
+/* ARTICLE CONTENT */
+/* ========================= */
+
+.article-content {
+
+  padding: 100px 8%;
+
+  background-color: var(--white);
+}
+
+
+/* ========================= */
+/* CONTAINER */
+/* ========================= */
+
+.article-container {
+
+  max-width: 950px;
+
+  margin: 0 auto;
+}
+
+
+/* ========================= */
+/* TITLES */
+/* ========================= */
+
+.article-container h2 {
+
+  font-size: 38px;
+
+  color: var(--gray-text);
+
+  margin-top: 50px;
+  margin-bottom: 25px;
+}
+
+.article-container h3 {
+
+  font-size: 26px;
+
+  color: var(--gray-text);
+
+  margin-bottom: 18px;
+}
+
+
+/* ========================= */
+/* TEXT */
+/* ========================= */
+
+.article-container p {
+
+  font-size: 17px;
+
+  line-height: 2;
+
+  color: #555;
+
+  margin-bottom: 25px;
+}
+
+
+/* ========================= */
+/* LIST */
+/* ========================= */
+
+.article-container ul {
+
+  margin-bottom: 40px;
+
+  padding-left: 25px;
+}
+
+.article-container li {
+
+  margin-bottom: 16px;
+
+  font-size: 17px;
+
+  color: #555;
+
+  line-height: 1.8;
+}
+
+
+/* ========================= */
+/* WARNING */
+/* ========================= */
+
+.article-warning {
+
+  background:
+    rgba(199,184,234,0.15);
+
+  border-left:
+    5px solid var(--purple-primary);
+
+  padding: 35px;
+
+  border-radius: 20px;
+
+  margin-top: 50px;
+}
+
+.article-warning h3 {
+
+  margin-bottom: 15px;
+}
+
+
+/* ========================= */
+/* SOURCES */
+/* ========================= */
+
+.article-sources {
+
+  margin-top: 70px;
+}
+
+
+/* ========================= */
+/* SOURCE CARD */
+/* ========================= */
+
+.source-card {
+
+  background-color: var(--gray-light);
+
+  padding: 35px;
+
+  border-radius: 25px;
+
+  margin-bottom: 30px;
+
+  border: 1px solid transparent;
+
+  transition: 0.3s;
+}
+
+.source-card:hover {
+
+  transform: translateY(-5px);
+
+  border-color: var(--purple-primary);
+}
+
+.source-card p {
+
+  margin-bottom: 20px;
+}
+
+
+/* ========================= */
+/* LINKS */
+/* ========================= */
+
+.source-card a {
+
+  display: inline-block;
+
+  background:
+    var(--gradient-main);
+
+  color: var(--white);
+
+  padding: 14px 24px;
+
+  border-radius: 50px;
+
+  font-weight: 500;
+
+  text-decoration: none;
+
+  transition: 0.3s;
+}
+
+.source-card a:hover {
+
+  transform: scale(1.03);
+
+  opacity: 0.95;
+}
+
+
+/* ========================= */
+/* RESPONSIVO */
+/* ========================= */
+
+@media (max-width: 992px) {
+
+  .article-hero-content h1 {
+
+    font-size: 52px;
+  }
+
+}
+
+@media (max-width: 768px) {
+
+  .article-hero-content h1 {
+
+    font-size: 42px;
+  }
+
+  .article-container h2 {
+
+    font-size: 32px;
+  }
+
+  .article-container h3 {
+
+    font-size: 22px;
+  }
+
+  .source-card,
+  .article-warning {
+
+    padding: 28px;
+  }
+
+}
+
+@media (max-width: 500px) {
+
+  .article-hero {
+
+    padding-top: 160px;
+  }
+
+  .article-hero-content h1 {
+
+    font-size: 34px;
+  }
+
+  .article-hero-content p,
+  .article-container p,
+  .article-container li {
+
+    font-size: 16px;
+  }
+
+  .article-container h2 {
+
+    font-size: 28px;
+  }
+
+}

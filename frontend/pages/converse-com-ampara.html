@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>Converse com a Ampara</title>
+
+  <!-- GOOGLE FONTS -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- CSS -->
+
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/chat.css">
+</head>
+
+<body>
+
+  <!-- ========================= -->
+  <!-- HEADER -->
+  <!-- ========================= -->
+
+  <header class="header">
+
+    <nav class="navbar">
+
+      <div class="logo">
+
+        <a href="../index.html">
+
+          <img
+            src="../assets/images/logo.png"
+            alt="Logo Ampara"
+          >
+
+        </a>
+
+      </div>
+
+      <ul class="nav-links">
+
+        <li>
+          <a href="../index.html">
+            Início
+          </a>
+        </li>
+
+        <li>
+          <a href="./saude-mental.html">
+            Saúde Mental
+          </a>
+        </li>
+
+        <li>
+          <a href="./reeduque-sua-mente.html">
+            Reeduque sua mente
+          </a>
+        </li>
+
+        <li>
+          <a href="./voce-nao-esta-sozinho.html">
+            Apoio
+          </a>
+        </li>
+
+      </ul>
+
+    </nav>
+
+  </header>
+
+  <!-- ========================= -->
+  <!-- CHAT -->
+  <!-- ========================= -->
+
+  <main class="chat-page">
+
+    <section class="chat-container">
+
+      <!-- TOPO DO CHAT -->
+
+      <div class="chat-header">
+
+        <div class="chat-avatar">
+
+          <img
+            src="../assets/images/logo3.png"
+            alt="Ampara"
+          >
+
+        </div>
+
+        <div class="chat-info">
+
+          <h2>Ampara IA</h2>
+
+          <span>
+            online agora
+          </span>
+
+        </div>
+
+      </div>
+
+      <!-- MENSAGENS -->
+
+      <div
+        class="chat-messages"
+        id="chat-messages"
+      >
+
+        <!-- MENSAGEM INICIAL -->
+
+        <div class="message bot">
+
+          <p>
+            Olá 💚
+            Eu sou a Ampara.
+
+            Este é um espaço seguro para conversar,
+            respirar e se sentir acolhido.
+
+            Como você está se sentindo hoje?
+          </p>
+
+        </div>
+
+      </div>
+
+      <!-- INPUT -->
+
+      <form
+        class="chat-input-area"
+        id="chat-form"
+      >
+
+        <input
+          type="text"
+          id="chat-input"
+          placeholder="Digite sua mensagem..."
+          autocomplete="off"
+          required
+        >
+
+        <button type="submit">
+          Enviar
+        </button>
+
+      </form>
+
+      <!-- AVISO -->
+
+      <div class="chat-warning">
+
+        <p>
+          A Ampara não substitui acompanhamento
+          psicológico ou médico profissional.
+        </p>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- JS -->
+
+  <script src="../js/chatbot.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,289 @@
+/* ========================= */
+/* HERO */
+/* ========================= */
+
+.mental-hero {
+
+  min-height: 70vh;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(127,191,159,0.12),
+      rgba(199,184,234,0.12)
+    );
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+
+  padding: 140px 8% 80px;
+}
+
+
+/* ========================= */
+/* HERO CONTENT */
+/* ========================= */
+
+.mental-hero-content {
+
+  max-width: 850px;
+}
+
+.mental-hero-content span {
+
+  display: inline-block;
+
+  background-color:
+    rgba(127,191,159,0.15);
+
+  color: var(--green-hover);
+
+  padding: 10px 20px;
+
+  border-radius: 30px;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  margin-bottom: 25px;
+}
+
+.mental-hero-content h1 {
+
+  font-size: 68px;
+
+  line-height: 1.1;
+
+  margin-bottom: 25px;
+
+  color: var(--gray-text);
+}
+
+.mental-hero-content p {
+
+  font-size: 18px;
+
+  line-height: 1.8;
+
+  color: #666;
+}
+
+
+/* ========================= */
+/* ESTATÍSTICAS */
+/* ========================= */
+
+.mental-stats {
+
+  padding: 80px 8%;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 30px;
+
+  background-color: var(--white);
+}
+
+.mental-stat-card {
+
+  background:
+    var(--gradient-main);
+
+  color: var(--white);
+
+  padding: 40px;
+
+  border-radius: 30px;
+
+  text-align: center;
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.08);
+}
+
+.mental-stat-card h2 {
+
+  font-size: 42px;
+
+  margin-bottom: 15px;
+}
+
+.mental-stat-card p {
+
+  line-height: 1.8;
+}
+
+
+/* ========================= */
+/* ARTICLES */
+/* ========================= */
+
+.articles-section {
+
+  padding: 100px 8%;
+
+  background-color: var(--gray-light);
+}
+
+
+/* ========================= */
+/* GRID */
+/* ========================= */
+
+.articles-grid {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 30px;
+}
+
+
+/* ========================= */
+/* CARD */
+/* ========================= */
+
+.article-card {
+
+  background-color: var(--white);
+
+  padding: 35px;
+
+  border-radius: 30px;
+
+  transition: 0.3s;
+
+  border: 1px solid transparent;
+
+  text-decoration: none;
+
+  color: var(--gray-text);
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.04);
+}
+
+.article-card:hover {
+
+  transform: translateY(-8px);
+
+  border-color: var(--purple-primary);
+}
+
+
+/* ========================= */
+/* ICON */
+/* ========================= */
+
+.article-icon {
+
+  width: 70px;
+  height: 70px;
+
+  background:
+    var(--gradient-main);
+
+  border-radius: 20px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 30px;
+
+  margin-bottom: 25px;
+}
+
+
+/* ========================= */
+/* TEXT */
+/* ========================= */
+
+.article-card h3 {
+
+  font-size: 28px;
+
+  margin-bottom: 18px;
+}
+
+.article-card p {
+
+  line-height: 1.8;
+
+  color: #666;
+}
+
+
+/* ========================= */
+/* RESPONSIVO */
+/* ========================= */
+
+@media (max-width: 992px) {
+
+  .mental-stats {
+
+    grid-template-columns: 1fr;
+  }
+
+  .articles-grid {
+
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .mental-hero-content h1 {
+
+    font-size: 52px;
+  }
+
+}
+
+@media (max-width: 768px) {
+
+  .articles-grid {
+
+    grid-template-columns: 1fr;
+  }
+
+  .mental-hero-content h1 {
+
+    font-size: 42px;
+  }
+
+  .article-card {
+
+    padding: 30px;
+  }
+
+}
+
+@media (max-width: 500px) {
+
+  .mental-hero {
+
+    padding-top: 160px;
+  }
+
+  .mental-hero-content h1 {
+
+    font-size: 34px;
+  }
+
+  .mental-hero-content p {
+
+    font-size: 16px;
+  }
+
+  .mental-stat-card h2 {
+
+    font-size: 34px;
+  }
+
+}
