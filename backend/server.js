@@ -130,7 +130,10 @@ app.post("/chat", async (req, res) => {
 
   } catch (error) {
 
-    console.error(error);
+    console.error(
+      "ERRO GEMINI:",
+      error.response?.data || error.message || error
+    );
 
     res.status(500).json({
 
