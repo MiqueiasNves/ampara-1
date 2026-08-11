@@ -2,379 +2,449 @@
 
 # 💚 AMPARA
 
-### Plataforma digital de apoio emocional com Inteligência Artificial
+### Tecnologia que acolhe. Informação que orienta.
 
-**Acolhimento • Informação • Tecnologia • Empatia**
+**Plataforma web de apoio emocional com Inteligência Artificial**
 
 <br>
 
 <img src="https://img.shields.io/badge/STATUS-EM%20DESENVOLVIMENTO-2ea44f?style=for-the-badge"/>
-<img src="https://img.shields.io/badge/NODE.JS-20%2B-339933?style=for-the-badge&logo=node.js&logoColor=white"/>
-<img src="https://img.shields.io/badge/EXPRESS.JS-API-000000?style=for-the-badge&logo=express&logoColor=white"/>
-<img src="https://img.shields.io/badge/GEMINI-AI-4285F4?style=for-the-badge&logo=google&logoColor=white"/>
-<img src="https://img.shields.io/badge/LICENSE-EM%20DEFINIÇÃO-lightgrey?style=for-the-badge"/>
+<img src="https://img.shields.io/badge/IA-GOOGLE%20GEMINI-4285F4?style=for-the-badge&logo=google&logoColor=white"/>
+<img src="https://img.shields.io/badge/NODE.JS-EXPRESS-339933?style=for-the-badge&logo=node.js&logoColor=white"/>
+<img src="https://img.shields.io/badge/FRONT--END-HTML%20%7C%20CSS%20%7C%20JS-E34F26?style=for-the-badge"/>
 
 <br><br>
 
-[![GitHub](https://img.shields.io/badge/GitHub-MiqueiasNves-181717?style=for-the-badge\&logo=github)](https://github.com/MiqueiasNves/ampara-1)
+<a href="https://github.com/MiqueiasNves/ampara-1">
+  <img src="https://img.shields.io/badge/REPOSITÓRIO-MiqueiasNves/ampara--1-181717?style=for-the-badge&logo=github"/>
+</a>
 
 </div>
 
 ---
 
-## 📌 Sobre o projeto
+## 🧭 Índice
 
-**Ampara** é uma plataforma web desenvolvida com o objetivo de oferecer um espaço digital de **informação, acolhimento e apoio emocional**.
-
-A aplicação combina uma interface web com um back-end em **Node.js + Express** e integração com a **Google Gemini API**, permitindo que o usuário converse com a Ampara por meio de uma interface de chat.
-
-Além da conversa com a IA, a plataforma disponibiliza conteúdos relacionados à saúde mental, incluindo temas como:
-
-* 🧠 Saúde mental
-* 😰 Ansiedade
-* 💭 Depressão
-* 🔥 Burnout
-* ⚡ Estresse
-* ❤️ Autoestima
-* 😴 Sono
-* 🌱 Reeducação mental
-* 🤝 Apoio
-
-> **Objetivo:** utilizar a tecnologia como ferramenta de acolhimento e acesso à informação, sem substituir profissionais especializados.
+* [Sobre o projeto](#-sobre-o-projeto)
+* [Problema](#-problema)
+* [Objetivo](#-objetivo)
+* [Funcionalidades](#-funcionalidades)
+* [Caso de uso](#-caso-de-uso)
+* [Arquitetura](#-arquitetura)
+* [Fluxo da aplicação](#-fluxo-da-aplicação)
+* [Tecnologias](#-tecnologias)
+* [Estrutura do projeto](#-estrutura-do-projeto)
+* [Instalação](#-instalação)
+* [Configuração da API](#-configuração-da-api)
+* [Screenshots](#-screenshots)
+* [Segurança e responsabilidade](#-segurança-e-responsabilidade)
+* [Próximos passos](#-próximos-passos)
+* [Contribuição](#-contribuição)
+* [Desenvolvimento](#-desenvolvimento)
 
 ---
 
-# 🎯 Objetivos
+# 💚 Sobre o projeto
 
-O projeto foi pensado para:
+O **Ampara** é uma plataforma web criada para oferecer um espaço digital de **informação, acolhimento e apoio emocional**.
 
-* Facilitar o acesso a informações relacionadas à saúde mental;
-* Criar um espaço digital de acolhimento;
-* Utilizar Inteligência Artificial para estabelecer conversas empáticas;
-* Incentivar práticas de autocuidado;
-* Direcionar usuários para ajuda profissional quando necessário;
-* Desenvolver uma aplicação web utilizando arquitetura separada entre front-end e back-end.
+A aplicação reúne conteúdos educativos relacionados à saúde mental e uma interface de conversa com a **Ampara IA**, permitindo que o usuário envie mensagens e receba respostas geradas por Inteligência Artificial.
+
+O projeto combina uma interface desenvolvida com tecnologias web tradicionais com um servidor **Node.js + Express**, responsável pela comunicação com a API do **Google Gemini**.
+
+> **A proposta do Ampara não é substituir profissionais de saúde, mas utilizar a tecnologia como uma ferramenta de informação e acolhimento inicial.**
+
+---
+
+# 🎯 Problema
+
+Questões relacionadas à saúde mental fazem parte da vida de muitas pessoas, mas nem sempre existe facilidade para encontrar informações confiáveis, compreender determinados temas ou simplesmente encontrar um espaço inicial de conversa.
+
+O Ampara busca utilizar a tecnologia para criar uma experiência digital simples, acessível e acolhedora, reunindo **conteúdo educativo + interação com Inteligência Artificial** em uma única plataforma.
+
+---
+
+# 🚀 Objetivo
+
+O projeto tem como principais objetivos:
+
+* 💚 Criar um ambiente digital acolhedor;
+* 🧠 Disponibilizar conteúdos relacionados à saúde mental;
+* 🤖 Utilizar Inteligência Artificial para conversas empáticas;
+* 🌱 Incentivar autocuidado e reflexão;
+* 🤝 Facilitar o acesso a informações e recursos de apoio;
+* 💻 Aplicar conhecimentos de desenvolvimento web e integração com APIs de IA.
 
 ---
 
 # ✨ Funcionalidades
 
-## 🤖 Conversa com a Ampara
+## 🤖 Conversar com a Ampara
 
-A principal funcionalidade do projeto é o chat com a Ampara.
+A plataforma possui uma área específica para conversar com a Ampara IA.
 
-O usuário envia uma mensagem através da interface web e o front-end realiza uma requisição para o back-end através da rota:
+A interface apresenta:
 
-```http
-POST /chat
-```
+* Avatar da Ampara;
+* Status de disponibilidade;
+* Histórico visual das mensagens;
+* Campo para digitação;
+* Botão de envio;
+* Aviso de que a IA não substitui acompanhamento profissional.
 
-O servidor recebe a mensagem, constrói o contexto da IA e envia a solicitação para o modelo Gemini.
-
-A resposta retorna ao front-end e é apresentada ao usuário.
-
-### Fluxo
-
-```text
-Usuário
-   │
-   ▼
-Interface de Chat
-   │
-   │ POST /chat
-   ▼
-Node.js + Express
-   │
-   ▼
-Google Gemini API
-   │
-   ▼
-Resposta da Ampara
-   │
-   ▼
-Interface de Chat
-   │
-   ▼
-Usuário
-```
-
-A integração está implementada no `server.js`, utilizando `GoogleGenerativeAI` e o modelo `gemini-2.5-pro`.
+A página `converse-com-ampara.html` implementa essa interface e utiliza o `chatbot.js` para realizar a comunicação com o back-end.
 
 ---
 
-## 📚 Conteúdos sobre saúde mental
+## 🧠 Conteúdos de saúde mental
 
-A plataforma disponibiliza páginas e conteúdos relacionados a diferentes temas de saúde mental.
+O projeto possui páginas específicas para diferentes temas:
 
-Entre eles estão:
+| Página                       | Tema                  |
+| ---------------------------- | --------------------- |
+| `saude-mental.html`          | 🧠 Saúde Mental       |
+| `ansiedade.html`             | 😰 Ansiedade          |
+| `depressao.html`             | 💭 Depressão          |
+| `burnout.html`               | 🔥 Burnout            |
+| `estresse.html`              | ⚡ Estresse            |
+| `autoestima.html`            | ❤️ Autoestima         |
+| `sono.html`                  | 😴 Sono               |
+| `reeduque-sua-mente.html`    | 🌱 Reeduque sua mente |
+| `voce-nao-esta-sozinho.html` | 🤝 Apoio              |
 
-| Tema                 | Objetivo                                          |
-| -------------------- | ------------------------------------------------- |
-| 🧠 Saúde Mental      | Apresentar informações introdutórias sobre o tema |
-| 😰 Ansiedade         | Informações e orientações gerais                  |
-| 💭 Depressão         | Conteúdo educativo                                |
-| 🔥 Burnout           | Informações sobre esgotamento                     |
-| ⚡ Estresse           | Conteúdo relacionado ao gerenciamento do estresse |
-| ❤️ Autoestima        | Incentivo ao autocuidado e autoconhecimento       |
-| 😴 Sono              | Informações sobre hábitos relacionados ao sono    |
-| 🌱 Reeducação Mental | Conteúdos voltados a hábitos e mudanças positivas |
-| 🤝 Apoio             | Direcionamento para recursos de apoio             |
+Essas páginas estão presentes no diretório `frontend/pages` do projeto original.
 
 ---
 
-# 🧠 Caso de uso
+# 🧩 Caso de uso
 
 ## UC-01 — Conversar com a Ampara
 
-**Ator:** Usuário
+### 👤 Ator
 
-**Objetivo:** permitir que o usuário envie uma mensagem e receba uma resposta da Ampara.
+**Usuário**
+
+### 🎯 Objetivo
+
+Permitir que o usuário envie uma mensagem para a Ampara e receba uma resposta gerada por Inteligência Artificial.
 
 ### Pré-condições
 
-* A aplicação deve estar disponível;
-* O servidor Node.js deve estar em execução;
-* A variável `GEMINI_API_KEY` deve estar configurada;
-* O usuário deve estar na interface de conversa.
+* A aplicação deve estar em execução;
+* O servidor deve possuir uma chave válida da API Gemini;
+* O usuário deve acessar a página de conversa.
 
 ### Fluxo principal
 
-1. O usuário acessa a plataforma;
-2. Seleciona a opção de conversa;
-3. O sistema apresenta a interface de chat;
-4. O usuário digita uma mensagem;
-5. O usuário envia a mensagem;
-6. O front-end envia uma requisição `POST /chat`;
-7. O back-end recebe a mensagem;
-8. O servidor cria o prompt da Ampara;
-9. O prompt é enviado ao Google Gemini;
-10. O Gemini gera a resposta;
-11. O back-end retorna a resposta em JSON;
-12. O front-end apresenta a resposta ao usuário.
-
-### Fluxo alternativo — mensagem vazia
-
 ```text
-Usuário
-   │
-   ▼
-Envia mensagem vazia
-   │
-   ▼
-Sistema valida entrada
-   │
-   ▼
-Mensagem rejeitada
+1. Usuário acessa a plataforma
+        ↓
+2. Usuário seleciona "Converse com a Ampara"
+        ↓
+3. Sistema apresenta a interface de conversa
+        ↓
+4. Usuário digita uma mensagem
+        ↓
+5. Usuário envia a mensagem
+        ↓
+6. Front-end envia POST /chat
+        ↓
+7. Back-end recebe a mensagem
+        ↓
+8. Sistema cria o prompt da Ampara
+        ↓
+9. Prompt é enviado ao Google Gemini
+        ↓
+10. Gemini gera a resposta
+        ↓
+11. Back-end retorna JSON
+        ↓
+12. Front-end apresenta a resposta
 ```
 
-### Fluxo alternativo — erro no servidor
-
-```text
-Usuário
-   │
-   ▼
-Envia mensagem
-   │
-   ▼
-Falha na comunicação
-   │
-   ▼
-Sistema apresenta mensagem de erro
-```
-
-O front-end possui tratamento para erros de comunicação, enquanto o back-end retorna HTTP `500` quando ocorre uma falha durante a geração da resposta.
+O servidor implementa a rota `POST /chat`, recebe `req.body.message`, gera o prompt e chama `model.generateContent()`.
 
 ---
 
-# 👥 Atores do sistema
+## 🔀 Fluxo alternativo — erro na IA
 
-```mermaid
-flowchart LR
-
-    U[👤 Usuário]
-
-    A[🤖 Ampara]
-
-    G[🧠 Google Gemini]
-
-    U -->|Envia mensagem| A
-    A -->|Processa solicitação| G
-    G -->|Gera resposta| A
-    A -->|Apresenta resposta| U
+```text
+Usuário envia mensagem
+        ↓
+Servidor tenta consultar Gemini
+        ↓
+Ocorre erro
+        ↓
+Servidor registra o erro
+        ↓
+HTTP 500
+        ↓
+Usuário recebe mensagem de erro
 ```
 
-### Usuário
-
-Interage diretamente com a plataforma, consulta os conteúdos e utiliza o chat.
-
-### Ampara
-
-É a interface de inteligência artificial responsável pela conversa e pelo acolhimento inicial.
-
-### Google Gemini
-
-Serviço externo utilizado pelo back-end para processamento das mensagens e geração das respostas.
+O código atual retorna uma mensagem informando que ocorreu um erro ao conversar com a Ampara quando a geração falha.
 
 ---
 
 # 🏗️ Arquitetura
 
-O projeto possui uma separação entre:
+O Ampara utiliza uma arquitetura simples dividida em duas camadas principais:
 
 ```text
-ampara-1/
-│
-├── backend/
-│   └── server.js
-│
-├── frontend/
-│   ├── index.html
-│   ├── css/
-│   ├── js/
-│   │   └── chatbot.js
-│   └── ...
-│
-├── .gitignore
-└── README.md
+┌──────────────────────────────────────────────┐
+│                    USUÁRIO                   │
+└──────────────────────┬───────────────────────┘
+                       │
+                       ▼
+┌──────────────────────────────────────────────┐
+│                 FRONT-END                    │
+│                                              │
+│  HTML  ──  CSS  ──  JavaScript               │
+│                                              │
+│  • Interface                                 │
+│  • Navegação                                 │
+│  • Conteúdos                                 │
+│  • Chat                                      │
+└──────────────────────┬───────────────────────┘
+                       │
+                       │ HTTP POST /chat
+                       ▼
+┌──────────────────────────────────────────────┐
+│                  BACK-END                    │
+│                                              │
+│              Node.js + Express               │
+│                                              │
+│  • API                                       │
+│  • CORS                                      │
+│  • Variáveis de ambiente                     │
+│  • Integração com Gemini                     │
+└──────────────────────┬───────────────────────┘
+                       │
+                       │ API
+                       ▼
+┌──────────────────────────────────────────────┐
+│             GOOGLE GEMINI API                │
+│                                              │
+│              gemini-2.5-pro                  │
+└──────────────────────┬───────────────────────┘
+                       │
+                       │ Resposta
+                       ▼
+                 AMPARA IA 💚
 ```
 
-A estrutura atual do repositório apresenta os diretórios `backend` e `frontend`.
+O Express também serve os arquivos estáticos localizados no diretório `frontend`, enquanto a API é responsável pelo endpoint de conversa.
 
 ---
 
-## 🔧 Arquitetura da aplicação
+# 📐 Diagrama de componentes
 
 ```mermaid
-flowchart TB
+flowchart LR
 
     USER["👤 Usuário"]
 
-    subgraph FRONT["🌐 FRONT-END"]
+    subgraph FRONT["🌐 Front-end"]
         HTML["HTML"]
         CSS["CSS"]
         JS["JavaScript"]
         CHAT["Interface de Chat"]
     end
 
-    subgraph BACK["⚙️ BACK-END"]
+    subgraph BACK["⚙️ Back-end"]
         EXPRESS["Node.js + Express"]
-        ROUTE["POST /chat"]
-        ENV["dotenv"]
         CORS["CORS"]
+        DOTENV["dotenv"]
+        CHATAPI["POST /chat"]
     end
 
-    subgraph AI["🧠 INTELIGÊNCIA ARTIFICIAL"]
-        GEMINI["Google Gemini API"]
+    subgraph AI["🧠 Inteligência Artificial"]
+        GEMINI["Google Gemini"]
         MODEL["gemini-2.5-pro"]
     end
 
     USER --> CHAT
     CHAT --> JS
-    JS -->|HTTP POST| ROUTE
-    ROUTE --> EXPRESS
+    HTML --> CHAT
+    CSS --> CHAT
+
+    JS -->|HTTP| CHATAPI
+    CHATAPI --> EXPRESS
     EXPRESS --> CORS
-    EXPRESS --> ENV
+    EXPRESS --> DOTENV
     EXPRESS --> GEMINI
     GEMINI --> MODEL
+
     MODEL --> EXPRESS
-    EXPRESS -->|JSON reply| JS
+    EXPRESS -->|JSON| JS
     JS --> CHAT
     CHAT --> USER
 ```
 
-O back-end utiliza Express, CORS, dotenv e `@google/generative-ai`, além de servir os arquivos estáticos do front-end.
-
 ---
 
-# 🔄 Fluxo da comunicação
+# 🔄 Fluxo de comunicação
 
 ```mermaid
 sequenceDiagram
 
-    actor Usuario as 👤 Usuário
-    participant Front as 🌐 Front-end
-    participant Back as ⚙️ Back-end
-    participant Gemini as 🧠 Gemini
+    actor U as 👤 Usuário
+    participant F as 🌐 Front-end
+    participant B as ⚙️ Node.js / Express
+    participant G as 🧠 Google Gemini
 
-    Usuario->>Front: Digita mensagem
-    Front->>Front: Valida mensagem
-    Front->>Back: POST /chat
-    Back->>Back: Recebe req.body.message
-    Back->>Gemini: Envia prompt + mensagem
-    Gemini-->>Back: Gera resposta
-    Back-->>Front: JSON { reply }
-    Front-->>Usuario: Exibe resposta
+    U->>F: Digita mensagem
+    U->>F: Envia mensagem
+
+    F->>B: POST /chat
+    B->>B: Obtém req.body.message
+
+    B->>G: Envia prompt + mensagem
+    G-->>B: Resposta gerada
+
+    B-->>F: JSON { reply }
+    F-->>U: Exibe resposta
 ```
 
 ---
 
-# 🧩 Tecnologias utilizadas
+# 🛠️ Tecnologias
 
 ## Front-end
 
-<div>
+<div align="center">
 
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge\&logo=html5\&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge\&logo=css3\&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge\&logo=javascript\&logoColor=black)
+<img src="https://skillicons.dev/icons?i=html,css,js&theme=light" />
 
-</div>
+<br><br>
 
-Responsável pela interface, navegação, apresentação dos conteúdos e interação com o chatbot.
-
----
-
-## Back-end
-
-<div>
-
-![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge\&logo=node.js\&logoColor=white)
-![Express](https://img.shields.io/badge/Express-000000?style=for-the-badge\&logo=express\&logoColor=white)
-![CORS](https://img.shields.io/badge/CORS-API-6DB33F?style=for-the-badge)
+<img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white"/>
+<img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white"/>
+<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"/>
 
 </div>
 
-Responsável pelo servidor, processamento das requisições e comunicação com a API de inteligência artificial.
+### HTML
+
+Estrutura das páginas e componentes da aplicação.
+
+### CSS
+
+Responsável pela identidade visual, layout, responsividade e estilização.
+
+### JavaScript
+
+Responsável pela interatividade da aplicação e comunicação do chatbot com o servidor.
+
+O projeto possui `chatbot.js` e `script.js` no diretório `frontend/js`.
 
 ---
 
-## Inteligência Artificial
+# ⚙️ Back-end
 
-<div>
+<div align="center">
 
-![Google Gemini](https://img.shields.io/badge/Google%20Gemini-AI-4285F4?style=for-the-badge\&logo=google\&logoColor=white)
+<img src="https://skillicons.dev/icons?i=nodejs,express&theme=dark" />
+
+<br><br>
+
+<img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white"/>
+<img src="https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white"/>
+<img src="https://img.shields.io/badge/CORS-API-2ea44f?style=for-the-badge"/>
+<img src="https://img.shields.io/badge/dotenv-Environment-ecd53f?style=for-the-badge"/>
 
 </div>
 
-O projeto utiliza a biblioteca `@google/generative-ai` para realizar a integração com o Gemini. O servidor atualmente configura o modelo `gemini-2.5-pro`.
+O `package.json` atual declara:
+
+* `express`
+* `cors`
+* `dotenv`
+* `@google/generative-ai`
+
+e utiliza CommonJS.
 
 ---
 
-# 🔐 Configuração da API
+# 🤖 Inteligência Artificial
 
-A chave da API não deve ser armazenada diretamente no código.
+A integração de IA utiliza:
 
-O projeto utiliza uma variável de ambiente:
+**Google Generative AI**
+
+Modelo configurado:
+
+```text
+gemini-2.5-pro
+```
+
+A chave da API é carregada através da variável de ambiente:
 
 ```env
 GEMINI_API_KEY=sua_chave_aqui
 ```
 
-O `dotenv` é utilizado para carregar as variáveis de ambiente.
-
-> ⚠️ **Nunca publique sua `GEMINI_API_KEY` no GitHub.**
+O back-end utiliza `GoogleGenerativeAI` para inicializar o serviço e `generateContent()` para gerar as respostas.
 
 ---
 
-# 🚀 Instalação e execução
+# 📁 Estrutura do projeto
 
-## 1. Clone o projeto
+A estrutura atual do projeto original está organizada desta forma:
+
+```text
+ampara/
+│
+├── backend/
+│   ├── package.json
+│   ├── package-lock.json
+│   └── server.js
+│
+├── frontend/
+│   │
+│   ├── assets/
+│   │   └── images/
+│   │       ├── logo.png
+│   │       ├── logo2.png
+│   │       └── logo3.png
+│   │
+│   ├── css/
+│   │   ├── style.css
+│   │   └── chat.css
+│   │
+│   ├── js/
+│   │   ├── chatbot.js
+│   │   └── script.js
+│   │
+│   ├── pages/
+│   │   ├── ansiedade.html
+│   │   ├── autoestima.html
+│   │   ├── burnout.html
+│   │   ├── converse-com-ampara.html
+│   │   ├── depressao.html
+│   │   ├── estresse.html
+│   │   ├── reeduque-sua-mente.html
+│   │   ├── saude-mental.html
+│   │   ├── sono.html
+│   │   └── voce-nao-esta-sozinho.html
+│   │
+│   └── index.html
+│
+├── .gitignore
+└── README.md
+```
+
+---
+
+# 🚀 Instalação
+
+## 1. Clonar o repositório
 
 ```bash
 git clone https://github.com/MiqueiasNves/ampara-1.git
 ```
 
-Entre na pasta:
+Depois:
 
 ```bash
 cd ampara-1
@@ -382,7 +452,7 @@ cd ampara-1
 
 ---
 
-## 2. Entre no back-end
+## 2. Entrar no back-end
 
 ```bash
 cd backend
@@ -390,7 +460,7 @@ cd backend
 
 ---
 
-## 3. Instale as dependências
+## 3. Instalar dependências
 
 ```bash
 npm install
@@ -398,42 +468,46 @@ npm install
 
 ---
 
-## 4. Configure as variáveis de ambiente
+# 🔐 Configuração da API Gemini
 
-Crie um arquivo:
+Na pasta `backend`, crie um arquivo:
 
 ```text
 .env
 ```
 
-Dentro dele:
+Adicione:
 
 ```env
 GEMINI_API_KEY=sua_chave_da_api
 PORT=3000
 ```
 
+### ⚠️ Importante
+
+**Nunca envie sua chave da API para o GitHub.**
+
+O arquivo `.env` deve permanecer protegido pelo `.gitignore`.
+
 ---
 
-## 5. Inicie o servidor
+# ▶️ Executando o projeto
+
+Dentro da pasta `backend`:
 
 ```bash
 node server.js
 ```
 
-O servidor utiliza a porta definida pela variável `PORT` ou, caso ela não exista, a porta `3000`.
+Caso tudo esteja funcionando, o servidor será iniciado na porta configurada ou na porta padrão `3000`.
 
----
-
-## 6. Acesse a aplicação
-
-Abra no navegador:
+Acesse:
 
 ```text
 http://localhost:3000
 ```
 
-O próprio servidor possui uma rota inicial para verificar se a aplicação está funcionando:
+O servidor possui uma rota inicial utilizada para verificar seu funcionamento:
 
 ```text
 Servidor da Ampara funcionando 💚
@@ -443,159 +517,101 @@ Servidor da Ampara funcionando 💚
 
 # 📸 Screenshots
 
-> **Adicione aqui as capturas reais da aplicação.**
-
-Sugestão de organização:
+O projeto já possui uma identidade visual própria e três arquivos de logo em:
 
 ```text
-frontend/
-└── images/
-    ├── home.png
-    ├── chat.png
-    ├── ansiedade.png
-    ├── apoio.png
-    └── reeducacao.png
+frontend/assets/images/
 ```
 
-Depois, substitua esta seção por:
+incluindo `logo.png`, `logo2.png` e `logo3.png`.
+
+Para apresentar o projeto no GitHub, recomendo adicionar capturas reais da aplicação nesta seção.
 
 ### 🏠 Página inicial
 
 <p align="center">
-  <img src="frontend/images/home.png" width="850" alt="Página inicial da Ampara">
+  <img src="frontend/assets/images/logo.png" width="180" alt="Logo Ampara">
 </p>
 
-### 🤖 Conversa com a Ampara
+### 🤖 Interface de conversa
 
-<p align="center">
-  <img src="frontend/images/chat.png" width="850" alt="Chat da Ampara">
-</p>
+A página de conversa utiliza a identidade visual da Ampara e apresenta:
 
-### 🧠 Conteúdos
+* avatar;
+* status online;
+* mensagens;
+* campo de entrada;
+* botão de envio;
+* aviso sobre acompanhamento profissional.
 
-<p align="center">
-  <img src="frontend/images/ansiedade.png" width="850" alt="Conteúdo sobre ansiedade">
-</p>
+Esses elementos estão presentes diretamente em `converse-com-ampara.html`.
 
-### 🤝 Área de apoio
-
-<p align="center">
-  <img src="frontend/images/apoio.png" width="850" alt="Área de apoio">
-</p>
+> **Sugestão:** depois de executar o projeto localmente, tire screenshots da página inicial e do chat e salve-as em `frontend/assets/screenshots/`. Isso deixará o README muito mais forte visualmente.
 
 ---
 
-# 📁 Estrutura do projeto
+# 🛡️ Segurança e responsabilidade
 
-```text
-ampara-1/
-│
-├── backend/
-│   ├── package.json
-│   ├── package-lock.json
-│   └── server.js
-│
-├── frontend/
-│   ├── index.html
-│   │
-│   ├── css/
-│   │   └── ...
-│   │
-│   ├── js/
-│   │   ├── chatbot.js
-│   │   └── ...
-│   │
-│   ├── images/
-│   │   └── ...
-│   │
-│   └── pages/
-│       └── ...
-│
-├── .gitignore
-└── README.md
-```
+O Ampara foi projetado com uma premissa importante:
 
-> A estrutura acima representa a organização principal do projeto. Arquivos adicionais podem ser adicionados conforme a evolução da aplicação.
+> **A Inteligência Artificial não substitui acompanhamento psicológico ou médico profissional.**
 
----
+O prompt configurado no servidor orienta a IA a:
 
-# 🛡️ Diretrizes da Ampara
+* acolher emocionalmente;
+* conversar com empatia;
+* incentivar autocuidado;
+* evitar julgamentos;
+* manter uma comunicação gentil;
+* manter uma comunicação calma;
+* não substituir psicólogos;
+* recomendar ajuda profissional em casos graves.
 
-A personalidade da IA é definida no back-end com algumas diretrizes importantes:
+Essas regras estão implementadas diretamente no `server.js`.
 
-```text
-✓ Acolher emocionalmente
-✓ Conversar com empatia
-✓ Incentivar o autocuidado
-✓ Evitar julgamentos
-✓ Manter comunicação gentil
-✓ Manter comunicação calma
-✓ Ser objetiva
+### ⚠️ Importante
 
-✕ Não substituir psicólogos
-✕ Não realizar diagnóstico
-✕ Não substituir atendimento profissional
-```
+O Ampara deve ser entendido como uma **ferramenta de informação e acolhimento inicial**, e não como ferramenta de diagnóstico ou tratamento.
 
-O prompt implementado no servidor orienta explicitamente a Ampara a não substituir psicólogos e a recomendar ajuda profissional em situações graves.
-
----
-
-# ⚠️ Aviso importante
-
-A **Ampara não substitui psicólogos, psiquiatras, médicos ou qualquer profissional de saúde**.
-
-A aplicação possui finalidade **educativa e de acolhimento inicial**.
-
-As respostas produzidas por inteligência artificial podem conter erros e não devem ser utilizadas como diagnóstico ou tratamento médico.
-
-Em situações de emergência ou risco, procure imediatamente os serviços profissionais e de emergência disponíveis na sua região.
+Em situações de emergência ou risco, o usuário deve procurar atendimento profissional e os serviços de emergência disponíveis em sua região.
 
 ---
 
 # 🔮 Próximos passos
 
-O projeto encontra-se em evolução e possui espaço para diversas melhorias.
+## 🤖 Inteligência Artificial
 
-### Interface
+* [ ] Melhorar o contexto das conversas;
+* [ ] Implementar histórico de conversa;
+* [ ] Melhorar tratamento de situações de risco;
+* [ ] Aprimorar o prompt;
+* [ ] Implementar controle de sessão;
+* [ ] Adicionar mecanismos de segurança específicos para conteúdo sensível.
 
-* [ ] Melhorar responsividade
-* [ ] Aprimorar acessibilidade
-* [ ] Criar modo escuro
-* [ ] Melhorar experiência do chat
-* [ ] Adicionar animações e microinterações
+## ⚙️ Back-end
 
-### Inteligência Artificial
+* [ ] Criar documentação da API;
+* [ ] Implementar validação das entradas;
+* [ ] Adicionar testes automatizados;
+* [ ] Implementar tratamento de erros mais estruturado;
+* [ ] Adicionar logging;
+* [ ] Implementar rate limiting.
 
-* [ ] Implementar histórico de conversa
-* [ ] Melhorar contexto das conversas
-* [ ] Aprimorar tratamento de situações de risco
-* [ ] Criar diferentes contextos de atendimento
-* [ ] Implementar controle de sessão
+## 🎨 Front-end
 
-### Back-end
+* [ ] Melhorar responsividade;
+* [ ] Melhorar acessibilidade;
+* [ ] Aprimorar experiência do chat;
+* [ ] Criar microinterações;
+* [ ] Melhorar navegação entre conteúdos.
 
-* [ ] Criar arquitetura de serviços
-* [ ] Adicionar validação de dados
-* [ ] Implementar logging estruturado
-* [ ] Criar testes automatizados
-* [ ] Adicionar documentação da API
-* [ ] Implementar rate limiting
+## 🚀 Infraestrutura
 
-### Segurança
-
-* [ ] Melhorar proteção da API
-* [ ] Implementar gerenciamento seguro de credenciais
-* [ ] Criar políticas de privacidade
-* [ ] Avaliar armazenamento e tratamento de dados sensíveis
-
-### Deploy
-
-* [ ] Hospedar front-end
-* [ ] Hospedar back-end
-* [ ] Configurar variáveis de ambiente em produção
-* [ ] Configurar domínio
-* [ ] Implementar CI/CD
+* [ ] Deploy do back-end;
+* [ ] Deploy do front-end;
+* [ ] Configuração de variáveis de ambiente em produção;
+* [ ] CI/CD;
+* [ ] Monitoramento da aplicação.
 
 ---
 
@@ -603,15 +619,9 @@ O projeto encontra-se em evolução e possui espaço para diversas melhorias.
 
 Contribuições são bem-vindas.
 
-Se você quiser contribuir:
+### 1. Faça um fork
 
-### 1. Faça um Fork
-
-```bash
-git fork
-```
-
-ou utilize a opção **Fork** diretamente no GitHub.
+Utilize o botão **Fork** no GitHub.
 
 ### 2. Clone seu fork
 
@@ -622,80 +632,96 @@ git clone https://github.com/SEU-USUARIO/ampara-1.git
 ### 3. Crie uma branch
 
 ```bash
-git checkout -b feature/nova-funcionalidade
+git checkout -b feature/minha-funcionalidade
 ```
 
-### 4. Faça suas alterações
+### 4. Desenvolva
 
-Desenvolva a funcionalidade ou correção.
+Faça suas alterações e teste localmente.
 
-### 5. Faça o commit
+### 5. Commit
 
 ```bash
 git add .
 git commit -m "feat: adiciona nova funcionalidade"
 ```
 
-### 6. Envie para o GitHub
+### 6. Push
 
 ```bash
-git push origin feature/nova-funcionalidade
+git push origin feature/minha-funcionalidade
 ```
 
-### 7. Abra um Pull Request
+### 7. Pull Request
 
-Explique:
+Abra um Pull Request explicando:
 
-* O que foi alterado;
-* Qual problema foi resolvido;
-* Como testar;
-* Quais arquivos foram modificados.
+* o que foi desenvolvido;
+* qual problema foi resolvido;
+* como testar;
+* quais arquivos foram alterados.
 
 ---
 
-# 🧑‍💻 Desenvolvedor
+# 📚 O que este projeto demonstra
 
-<div align="center">
+O Ampara reúne diferentes conceitos importantes de desenvolvimento:
 
-### Miqueias Neves
+```text
+┌────────────────────────────────────────────┐
+│              CONHECIMENTOS                 │
+├────────────────────────────────────────────┤
+│                                            │
+│  ✓ HTML                                    │
+│  ✓ CSS                                     │
+│  ✓ JavaScript                              │
+│  ✓ Node.js                                 │
+│  ✓ Express                                 │
+│  ✓ APIs HTTP                               │
+│  ✓ Integração com Inteligência Artificial  │
+│  ✓ Variáveis de ambiente                   │
+│  ✓ Git / GitHub                            │
+│  ✓ Organização de projeto                  │
+│  ✓ UX / UI                                 │
+│                                            │
+└────────────────────────────────────────────┘
+```
 
-Estudante de Análise e Desenvolvimento de Sistemas
-Desenvolvedor em formação com foco em Back-End e tecnologias emergentes.
+---
 
-<br>
+# 👨‍💻 Desenvolvimento
 
-<a href="https://github.com/MiqueiasNves">
+O projeto presente neste repositório é uma versão derivada do projeto **Ampara**, originalmente disponibilizado por [`anecouto/ampara`](https://github.com/anecouto/ampara).
 
-<img src="https://img.shields.io/badge/GitHub-MiqueiasNves-181717?style=for-the-badge&logo=github&logoColor=white"/>
+A estrutura original conta com 20 commits, um diretório de front-end e outro de back-end, além de recursos visuais próprios.
 
-</a>
-
-</div>
+Este repositório pode ser utilizado como espaço para **estudo, evolução e implementação de novas funcionalidades** sobre a base do projeto.
 
 ---
 
 # 💚 Propósito
 
-> **Tecnologia também pode ser uma forma de cuidar.**
+> **Tecnologia pode ser mais humana.**
 
-A Ampara nasceu da ideia de utilizar tecnologia e Inteligência Artificial para criar uma experiência digital mais humana, acessível e acolhedora.
+O Ampara representa a união entre **tecnologia, Inteligência Artificial, experiência do usuário e propósito social**.
 
-O projeto representa também uma oportunidade de aplicar conhecimentos de **desenvolvimento web, APIs, integração com Inteligência Artificial, arquitetura de software e experiência do usuário** em uma aplicação com propósito social.
+Mais do que desenvolver uma aplicação web, o projeto busca explorar como ferramentas digitais podem criar experiências mais acessíveis, acolhedoras e centradas nas pessoas.
 
 ---
 
 <div align="center">
 
-### 💚 AMPARA
+## 💚 AMPARA
 
-**Acolher. Informar. Conectar.**
+### Acolher. Informar. Conectar.
 
 <br>
 
-<img src="https://img.shields.io/badge/FEITO%20COM-💚-2ea44f?style=for-the-badge"/>
+<img src="https://img.shields.io/badge/TECNOLOGIA-COM%20PROPÓSITO-2ea44f?style=for-the-badge"/>
+<img src="https://img.shields.io/badge/IA-COM%20EMPATIA-4285F4?style=for-the-badge"/>
 
 <br><br>
 
-⭐ Se este projeto despertou seu interesse, considere deixar uma estrela no repositório!
+**Desenvolvido com tecnologia e propósito.**
 
 </div>
