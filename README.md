@@ -691,8 +691,8 @@ O Ampara reúne diferentes conceitos importantes de desenvolvimento:
 
 # 👨‍💻 Desenvolvimento
 
-O projeto presente neste repositório é uma versão derivada do projeto **Ampara**, originalmente disponibilizado pelos alunos [`anecouto/ampara`](https://github.com/anecouto/ampara) e
-[`MiqueiasNves`](https://github.com/MiqueiasNves). 
+O projeto presente neste repositório é uma versão derivada do projeto **Ampara**, originalmente disponibilizado pelos alunos [`anecouto/ampara`](https://github.com/anecouto/ampara) ,
+[`MiqueiasNves`](https://github.com/MiqueiasNves) e [`DenisioMotta`](https://github.com/denisiomotta21-create). 
 
 A estrutura original conta com 20 commits, um diretório de front-end e outro de back-end, além de recursos visuais próprios.
 
