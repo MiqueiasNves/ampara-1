@@ -187,4 +187,8 @@ Abra **http://localhost:3000**. Use sempre esse endereço (e não o arquivo `.ht
 4. Abra um Pull Request.
 
 ## Créditos
-Projeto acadêmico derivado de [anecouto/ampara](https://github.com/anecouto/ampara), com contribuições de estudantes da Universidade Cruzeiro do Sul.
+Projeto acadêmico derivado de [anecouto/ampara](https://github.com/anecouto/ampara), desenvolvido por estudantes da Universidade Cruzeiro do Sul:
+ 
+- **Miqueias Neves** — [@MiqueiasNves](https://github.com/MiqueiasNves)
+- **Denisio Motta** — [@denisiomotta21-create](https://github.com/denisiomotta21-create)
+- **Indye** — [@Indye-dev](https://github.com/Indye-dev)
