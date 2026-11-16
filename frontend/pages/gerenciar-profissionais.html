@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <title>Ampara | Gerenciar Profissionais</title>
+
+    <!-- Fonte -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/admin-paginas.css">
+    <link rel="stylesheet" href="../css/profissionais.css">
+</head>
+
+<body>
+
+<!-- ========================= -->
+<!-- HEADER -->
+<!-- ========================= -->
+
+<header class="header">
+
+    <nav class="navbar">
+
+        <div class="logo">
+            <img src="../assets/images/logo.png" alt="Logo Ampara">
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="../admin.html">Painel Admin</a></li>
+            <li><a href="./gerenciar-usuarios.html">Usuários</a></li>
+            <li><a href="./gerenciar-profissionais.html">Profissionais</a></li>
+            <li><a href="./gerenciar-conteudos.html">Conteúdos</a></li>
+            <li><a href="./gerenciar-servicos.html">Serviços</a></li>
+            <li><a href="./relatorios-auditoria.html">Relatórios</a></li>
+        </ul>
+
+        <a href="../index.html" class="nav-button" id="botao-sair">
+            Sair do Painel
+        </a>
+
+    </nav>
+
+</header>
+
+<!-- ========================= -->
+<!-- GERENCIAR PROFISSIONAIS -->
+<!-- ========================= -->
+
+<main class="admin-page">
+
+    <div class="admin-page-header">
+
+        <div>
+            <span class="admin-tag">Módulo de Profissionais</span>
+            <h1>Gerenciar Profissionais</h1>
+            <p>Cadastre novos profissionais, aprove credenciamentos e controle quem aparece para os usuários na plataforma.</p>
+        </div>
+
+        <button type="button" class="primary-button admin-btn" id="btn-novo">
+            + Novo profissional
+        </button>
+
+    </div>
+
+    <!-- Resumo -->
+    <div class="admin-summary">
+        <div class="summary-box">
+            <h3 id="total-todos">0</h3>
+            <p>profissionais cadastrados</p>
+        </div>
+        <div class="summary-box">
+            <h3 id="total-ativos">0</h3>
+            <p>ativos (visíveis aos usuários)</p>
+        </div>
+        <div class="summary-box">
+            <h3 id="total-pendentes">0</h3>
+            <p>aguardando aprovação</p>
+        </div>
+    </div>
+
+    <p id="aviso-servidor" role="alert" hidden style="margin:0 0 14px;color:#a02b3e;font-size:.9rem"></p>
+
+    <!-- Busca e filtros -->
+    <div class="admin-toolbar">
+
+        <input type="search" id="busca" placeholder="Buscar por nome, registro ou especialidade..." aria-label="Buscar profissionais">
+
+        <select id="filtro-especialidade" aria-label="Filtrar por especialidade">
+            <option value="">Todas as especialidades</option>
+        </select>
+
+        <select id="filtro-status" aria-label="Filtrar por status">
+            <option value="">Todos os status</option>
+            <option value="ativo">Ativo</option>
+            <option value="pendente">Pendente</option>
+            <option value="inativo">Inativo</option>
+        </select>
+
+    </div>
+
+    <!-- Tabela -->
+    <div class="table-wrapper">
+
+        <table class="admin-table">
+            <thead>
+            <tr>
+                <th>Profissional</th>
+                <th>Especialidade</th>
+                <th>Modalidade</th>
+                <th>Valor</th>
+                <th>Status</th>
+                <th>Ações</th>
+            </tr>
+            </thead>
+            <tbody id="tabela-corpo"></tbody>
+        </table>
+
+        <p class="table-empty" id="tabela-vazia" hidden>
+            Nenhum profissional encontrado.
+        </p>
+
+    </div>
+
+</main>
+
+<!-- ========================= -->
+<!-- MODAL: CADASTRAR / EDITAR -->
+<!-- ========================= -->
+
+<div class="modal-overlay" id="modal-form" hidden>
+
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-titulo">
+
+        <h2 id="modal-titulo">Novo profissional</h2>
+
+        <form id="form-profissional" novalidate>
+
+            <input type="hidden" id="campo-id">
+
+            <div class="form-group">
+                <label for="campo-nome">Nome completo *</label>
+                <input type="text" id="campo-nome" maxlength="100" placeholder="Ex.: Dra. Maria Souza">
+            </div>
+
+            <div class="form-row">
+
+                <div class="form-group">
+                    <label for="campo-tipo">Tipo de profissional *</label>
+                    <select id="campo-tipo">
+                        <option value="">Selecione</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="campo-registro">Registro profissional *</label>
+                    <input type="text" id="campo-registro" maxlength="30" placeholder="Ex.: CRP 06/12345">
+                </div>
+
+            </div>
+
+            <div class="form-row">
+
+                <div class="form-group">
+                    <label for="campo-especialidade">Especialidade *</label>
+                    <select id="campo-especialidade">
+                        <option value="">Selecione</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="campo-modalidade">Modalidade *</label>
+                    <select id="campo-modalidade">
+                        <option value="">Selecione</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="form-row">
+
+                <div class="form-group">
+                    <label for="campo-valor">Valor da sessão (R$)</label>
+                    <input type="number" id="campo-valor" min="0" step="1" placeholder="0 = gratuito / social">
+                </div>
+
+                <div class="form-group">
+                    <label for="campo-status">Status</label>
+                    <select id="campo-status">
+                        <option value="ativo">Ativo</option>
+                        <option value="pendente">Pendente</option>
+                        <option value="inativo">Inativo</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="form-row">
+
+                <div class="form-group">
+                    <label for="campo-email">E-mail *</label>
+                    <input type="email" id="campo-email" maxlength="100" placeholder="nome@exemplo.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="campo-telefone">Telefone</label>
+                    <input type="text" id="campo-telefone" maxlength="20" placeholder="(11) 90000-0000">
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <label for="campo-disponibilidade">Disponibilidade</label>
+                <input type="text" id="campo-disponibilidade" maxlength="80" placeholder="Ex.: Seg a Qui, 9h às 17h">
+            </div>
+
+            <div class="form-group">
+                <label for="campo-bio">Apresentação *</label>
+                <textarea id="campo-bio" rows="4" maxlength="400" placeholder="Fale sobre a abordagem e a experiência do profissional"></textarea>
+            </div>
+
+            <p class="form-erro" id="form-erro" hidden></p>
+
+            <div class="modal-actions">
+                <button type="button" class="secondary-button admin-btn" id="btn-cancelar">Cancelar</button>
+                <button type="submit" class="primary-button admin-btn">Salvar</button>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<!-- ========================= -->
+<!-- MODAL: CONFIRMAR EXCLUSÃO -->
+<!-- ========================= -->
+
+<div class="modal-overlay" id="modal-excluir" hidden>
+
+    <div class="modal modal-small" role="alertdialog" aria-modal="true" aria-labelledby="excluir-titulo">
+
+        <h2 id="excluir-titulo">Excluir profissional?</h2>
+
+        <p id="excluir-texto"></p>
+
+        <div class="modal-actions">
+            <button type="button" class="secondary-button admin-btn" id="btn-excluir-cancelar">Cancelar</button>
+            <button type="button" class="primary-button admin-btn btn-perigo" id="btn-excluir-confirmar">Excluir</button>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ========================= -->
+<!-- FOOTER -->
+<!-- ========================= -->
+
+<footer class="footer">
+
+    <div class="footer-content">
+
+        <img src="../assets/images/logo.png" alt="Logo Ampara">
+
+        <p>© 2026 Ampara — Painel Administrativo do Sistema.</p>
+
+        <span>Acesso restrito a administradores e equipe autorizada.</span>
+
+    </div>
+
+</footer>
+
+<!-- ========================= -->
+<!-- SCRIPTS -->
+<!-- ========================= -->
+
+<script src="../js/api.js"></script>
+<script src="../js/profissionais-dados.js"></script>
+
+<script>
+    /* ----- Proteção: só entra quem fez login ----- */
+    if (sessionStorage.getItem("adminLogado") !== "true") {
+        window.location.href = "./login-admin.html";
+    }
+
+    /* ----- Sair do painel ----- */
+    document.getElementById("botao-sair").addEventListener("click", () => {
+        AmparaAPI.limparSessaoAdmin(); // apaga o token e o "adminLogado"
+    });
+
+    /* ----- Estado ----- */
+    /* locais:     profissionais salvos neste navegador (demonstração / criados com "+ Novo profissional")
+       doServidor: profissionais que se cadastraram pelo site, vindos do MySQL (ids "s1", "s2"...) */
+    let locais = carregarProfissionais();
+    let doServidor = [];
+    let idParaExcluir = null;
+
+    const todos = () => doServidor.concat(locais);
+    const achar = (id) => todos().find(x => String(x.id) === String(id));
+
+    /* ----- Elementos ----- */
+    const corpo = document.getElementById("tabela-corpo");
+    const vazia = document.getElementById("tabela-vazia");
+    const busca = document.getElementById("busca");
+    const filtroEspecialidade = document.getElementById("filtro-especialidade");
+    const filtroStatus = document.getElementById("filtro-status");
+
+    const modalForm = document.getElementById("modal-form");
+    const modalExcluir = document.getElementById("modal-excluir");
+    const form = document.getElementById("form-profissional");
+    const formErro = document.getElementById("form-erro");
+
+    /* ----- Utilidades ----- */
+    function criar(tag, classe, texto) {
+        const el = document.createElement(tag);
+        if (classe) el.className = classe;
+        if (texto !== undefined) el.textContent = texto;
+        return el;
+    }
+
+    function preencherSelect(select, itens) {
+        itens.forEach(i => select.appendChild(new Option(i, i)));
+    }
+
+    function persistir() {
+        salvarProfissionais(locais);
+    }
+
+    /* garante que o valor existe na lista do <select> (ex.: uma profissão que não está em AMPARA_TIPOS) */
+    function garantirOpcao(select, valor) {
+        if (valor && !Array.from(select.options).some(o => o.value === valor)) {
+            select.appendChild(new Option(valor, valor));
+        }
+    }
+
+    /* erro de uma chamada ao servidor: sessão vencida volta para o login; o resto vira aviso */
+    function tratarErroServidor(err) {
+        if (err && err.status === 401) {
+            window.location.href = "./login-admin.html";
+            return;
+        }
+        alert(err && err.status ? err.message : "Não foi possível falar com o servidor.");
+    }
+
+    /* ----- Resumo e tabela ----- */
+    function atualizarResumo() {
+        const lista = todos();
+        document.getElementById("total-todos").textContent = lista.length;
+        document.getElementById("total-ativos").textContent =
+            lista.filter(p => p.status === "ativo").length;
+        document.getElementById("total-pendentes").textContent =
+            lista.filter(p => p.status === "pendente").length;
+    }
+
+    function filtrados() {
+        const termo = busca.value.trim().toLowerCase();
+
+        return todos()
+            .filter(p => {
+                const bateBusca = !termo ||
+                    p.nome.toLowerCase().includes(termo) ||
+                    p.registro.toLowerCase().includes(termo) ||
+                    p.especialidade.toLowerCase().includes(termo);
+                const bateEsp = !filtroEspecialidade.value || p.especialidade === filtroEspecialidade.value;
+                const bateStatus = !filtroStatus.value || p.status === filtroStatus.value;
+                return bateBusca && bateEsp && bateStatus;
+            })
+            .sort((a, b) => a.nome.localeCompare(b.nome, "pt-BR"));
+    }
+
+    function desenharTabela() {
+        corpo.textContent = "";
+
+        const itens = filtrados();
+        vazia.hidden = itens.length > 0;
+
+        itens.forEach(p => {
+            const tr = criar("tr");
+
+            const tdNome = criar("td", "col-titulo");
+            tdNome.appendChild(criar("strong", "", p.nome));
+            tdNome.appendChild(criar("small", "", p.tipo + " • " + p.registro +
+                (p.origem === "servidor" ? " • cadastro pelo site" : "")));
+            tr.appendChild(tdNome);
+
+            tr.appendChild(criar("td", "", p.especialidade));
+            tr.appendChild(criar("td", "", p.modalidade));
+            tr.appendChild(criar("td", "", formatarValor(p.valor)));
+
+            const tdStatus = criar("td");
+            tdStatus.appendChild(
+                criar("span", "badge badge-" + p.status, AMPARA_STATUS[p.status] || p.status)
+            );
+            tr.appendChild(tdStatus);
+
+            const tdAcoes = criar("td", "col-acoes");
+
+            if (p.status === "pendente") {
+                const btnAprovar = criar("button", "acao-btn acao-aprovar", "Aprovar");
+                btnAprovar.type = "button";
+                btnAprovar.addEventListener("click", () => aprovar(p.id));
+                tdAcoes.appendChild(btnAprovar);
+            }
+
+            const btnEditar = criar("button", "acao-btn", "Editar");
+            btnEditar.type = "button";
+            btnEditar.addEventListener("click", () => abrirFormulario(p.id));
+            tdAcoes.appendChild(btnEditar);
+
+            const btnExcluir = criar("button", "acao-btn acao-excluir", "Excluir");
+            btnExcluir.type = "button";
+            btnExcluir.addEventListener("click", () => abrirExclusao(p.id));
+            tdAcoes.appendChild(btnExcluir);
+
+            tr.appendChild(tdAcoes);
+            corpo.appendChild(tr);
+        });
+
+        atualizarResumo();
+    }
+
+    /* ----- Aprovar credenciamento ----- */
+    function aprovar(id) {
+        const p = achar(id);
+        if (!p) return;
+
+        if (p.origem === "servidor") {
+            AmparaAPI.chamarAdmin("/api/admin/profissionais/" + p.apiId + "/status",
+                { method: "PATCH", body: { status: "ativo" } })
+                .then(carregarDoServidor)
+                .catch(tratarErroServidor);
+            return;
+        }
+
+        p.status = "ativo";
+        persistir();
+        desenharTabela();
+    }
+
+    /* ----- Formulário (cadastrar / editar) ----- */
+    function abrirFormulario(id) {
+        form.reset();
+        formErro.hidden = true;
+        document.getElementById("campo-id").value = "";
+        document.getElementById("campo-status").value = "ativo";
+        document.getElementById("modal-titulo").textContent = "Novo profissional";
+
+        if (id) {
+            const p = achar(id);
+            if (!p) return;
+
+            garantirOpcao(document.getElementById("campo-tipo"), p.tipo);
+            garantirOpcao(document.getElementById("campo-especialidade"), p.especialidade);
+            garantirOpcao(document.getElementById("campo-modalidade"), p.modalidade);
+
+            document.getElementById("modal-titulo").textContent = "Editar profissional";
+            document.getElementById("campo-id").value = p.id;
+            document.getElementById("campo-nome").value = p.nome;
+            document.getElementById("campo-tipo").value = p.tipo;
+            document.getElementById("campo-registro").value = p.registro;
+            document.getElementById("campo-especialidade").value = p.especialidade;
+            document.getElementById("campo-modalidade").value = p.modalidade;
+            document.getElementById("campo-valor").value = p.valor;
+            document.getElementById("campo-status").value = p.status;
+            document.getElementById("campo-email").value = p.email;
+            document.getElementById("campo-telefone").value = p.telefone || "";
+            document.getElementById("campo-disponibilidade").value = p.disponibilidade || "";
+            document.getElementById("campo-bio").value = p.bio;
+        }
+
+        modalForm.hidden = false;
+        document.getElementById("campo-nome").focus();
+    }
+
+    function fecharFormulario() {
+        modalForm.hidden = true;
+    }
+
+    function mostrarErro(msg) {
+        formErro.textContent = msg;
+        formErro.hidden = false;
+    }
+
+    form.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const id = document.getElementById("campo-id").value;
+        const nome = document.getElementById("campo-nome").value.trim();
+        const tipo = document.getElementById("campo-tipo").value;
+        const registro = document.getElementById("campo-registro").value.trim();
+        const especialidade = document.getElementById("campo-especialidade").value;
+        const modalidade = document.getElementById("campo-modalidade").value;
+        const valorTexto = document.getElementById("campo-valor").value.trim();
+        const status = document.getElementById("campo-status").value;
+        const email = document.getElementById("campo-email").value.trim();
+        const telefone = document.getElementById("campo-telefone").value.trim();
+        const disponibilidade = document.getElementById("campo-disponibilidade").value.trim();
+        const bio = document.getElementById("campo-bio").value.trim();
+
+        if (!nome || !tipo || !registro || !especialidade || !modalidade || !email || !bio) {
+            mostrarErro("Preencha todos os campos marcados com *.");
+            return;
+        }
+
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            mostrarErro("Informe um e-mail válido.");
+            return;
+        }
+
+        const valor = valorTexto === "" ? 0 : Number(valorTexto);
+
+        if (Number.isNaN(valor) || valor < 0) {
+            mostrarErro("O valor da sessão deve ser zero ou maior.");
+            return;
+        }
+
+        const dados = {
+            nome, tipo, registro, especialidade, modalidade,
+            valor, email, telefone, disponibilidade, bio, status
+        };
+
+        const existente = id ? achar(id) : null;
+
+        /* cadastrado pelo site: salva no servidor (a senha dele não é alterada aqui) */
+        if (existente && existente.origem === "servidor") {
+            const botaoSalvar = form.querySelector("button[type=submit]");
+            botaoSalvar.disabled = true;
+
+            AmparaAPI.chamarAdmin("/api/admin/profissionais/" + existente.apiId, { method: "PUT", body: dados })
+                .then(() => {
+                    fecharFormulario();
+                    return carregarDoServidor();
+                })
+                .catch((err) => {
+                    if (err.status === 401) return tratarErroServidor(err);
+                    mostrarErro(err.status ? err.message : "Não foi possível falar com o servidor.");
+                })
+                .then(() => { botaoSalvar.disabled = false; });
+            return;
+        }
+
+        if (existente) {
+            Object.assign(existente, dados);
+        } else {
+            locais.push(Object.assign({ id: Date.now() }, dados));
+        }
+
+        persistir();
+        fecharFormulario();
+        desenharTabela();
+    });
+
+    /* ----- Exclusão ----- */
+    function abrirExclusao(id) {
+        const p = achar(id);
+        if (!p) return;
+        idParaExcluir = p.id;
+        document.getElementById("excluir-texto").textContent =
+            "O cadastro de \"" + p.nome + "\" será removido e deixará de aparecer na plataforma. Essa ação não pode ser desfeita.";
+        modalExcluir.hidden = false;
+    }
+
+    function fecharExclusao() {
+        modalExcluir.hidden = true;
+        idParaExcluir = null;
+    }
+
+    document.getElementById("btn-excluir-confirmar").addEventListener("click", () => {
+        const p = achar(idParaExcluir);
+
+        if (p && p.origem === "servidor") {
+            AmparaAPI.chamarAdmin("/api/admin/profissionais/" + p.apiId, { method: "DELETE" })
+                .then(() => {
+                    fecharExclusao();
+                    return carregarDoServidor();
+                })
+                .catch((err) => {
+                    if (err.status === 401) return tratarErroServidor(err);
+                    /* o motivo (ex.: "tem consultas registradas") aparece dentro do próprio modal */
+                    document.getElementById("excluir-texto").textContent =
+                        err.status ? err.message : "Não foi possível falar com o servidor.";
+                });
+            return;
+        }
+
+        locais = locais.filter(x => String(x.id) !== String(idParaExcluir));
+        persistir();
+        fecharExclusao();
+        desenharTabela();
+    });
+
+    /* ----- Eventos gerais ----- */
+    document.getElementById("btn-novo").addEventListener("click", () => abrirFormulario());
+    document.getElementById("btn-cancelar").addEventListener("click", fecharFormulario);
+    document.getElementById("btn-excluir-cancelar").addEventListener("click", fecharExclusao);
+
+    [modalForm, modalExcluir].forEach(overlay => {
+        overlay.addEventListener("click", (e) => {
+            if (e.target === overlay) {
+                overlay.hidden = true;
+                idParaExcluir = null;
+            }
+        });
+    });
+
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+            fecharFormulario();
+            fecharExclusao();
+        }
+    });
+
+    busca.addEventListener("input", desenharTabela);
+    filtroEspecialidade.addEventListener("change", desenharTabela);
+    filtroStatus.addEventListener("change", desenharTabela);
+
+    /* ----- Início ----- */
+    preencherSelect(filtroEspecialidade, AMPARA_ESPECIALIDADES);
+    preencherSelect(document.getElementById("campo-especialidade"), AMPARA_ESPECIALIDADES);
+    preencherSelect(document.getElementById("campo-tipo"), AMPARA_TIPOS);
+    preencherSelect(document.getElementById("campo-modalidade"), AMPARA_MODALIDADES);
+
+    /* ----- Profissionais cadastrados pelo site (vêm do servidor) ----- */
+    const avisoServidor = document.getElementById("aviso-servidor");
+
+    function carregarDoServidor() {
+        return AmparaAPI.chamarAdmin("/api/admin/profissionais")
+            .then((r) => {
+                doServidor = (r.profissionais || []).map(p =>
+                    Object.assign({}, p, { id: "s" + p.id, apiId: p.id, origem: "servidor" }));
+                avisoServidor.hidden = true;
+            })
+            .catch((err) => {
+                if (err.status === 401) return tratarErroServidor(err); // sessão do admin vencida
+                avisoServidor.textContent = "Não foi possível carregar os profissionais cadastrados pelo site " +
+                    "(o servidor está ligado?). Mostrando só os profissionais salvos neste navegador.";
+                avisoServidor.hidden = false;
+            })
+            .then(() => desenharTabela());
+    }
+
+    desenharTabela();
+    carregarDoServidor();
+</script>
+
+</body>
+</html>

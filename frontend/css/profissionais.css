@@ -1,0 +1,503 @@
+/* ===================================== */
+/* AMPARA - ESTILOS DE PROFISSIONAIS */
+/* profissionais.css (usa as variáveis do style.css) */
+/* Usado pela página pública e também pela página do admin */
+/* ===================================== */
+
+
+/* ========================= */
+/* PÁGINA PÚBLICA */
+/* ========================= */
+
+.pro-page {
+    min-height: 100vh;
+
+    padding: 140px 8% 80px;
+
+    background-color: var(--gray-light);
+}
+
+.pro-header {
+    max-width: 760px;
+
+    margin-bottom: 35px;
+}
+
+.pro-tag {
+    color: var(--green-primary);
+
+    font-weight: 600;
+
+    text-transform: uppercase;
+
+    letter-spacing: 2px;
+
+    font-size: 14px;
+}
+
+.pro-header h1 {
+    font-size: 48px;
+
+    margin: 12px 0 18px;
+}
+
+.pro-header p {
+    color: #666;
+
+    line-height: 1.8;
+
+    font-size: 18px;
+}
+
+.pro-notice {
+    background-color: rgba(199, 184, 234, 0.25);
+
+    border-left: 5px solid var(--purple-dark);
+
+    border-radius: 15px;
+
+    padding: 18px 24px;
+
+    line-height: 1.7;
+
+    margin-bottom: 30px;
+}
+
+.pro-toolbar {
+    display: grid;
+
+    grid-template-columns: 1fr 240px 220px;
+
+    gap: 15px;
+
+    margin-bottom: 20px;
+}
+
+.pro-toolbar input,
+.pro-toolbar select {
+    width: 100%;
+
+    padding: 14px 20px;
+
+    border: 1px solid var(--gray-border);
+    border-radius: 50px;
+
+    background-color: var(--white);
+
+    font-family: inherit;
+    font-size: 15px;
+
+    outline: none;
+
+    transition: 0.3s;
+}
+
+.pro-toolbar input:focus,
+.pro-toolbar select:focus {
+    border-color: var(--green-primary);
+
+    box-shadow: 0 0 0 3px rgba(127, 191, 159, 0.25);
+}
+
+.pro-count {
+    color: #777;
+
+    font-size: 14px;
+
+    margin-bottom: 20px;
+}
+
+.pro-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 25px;
+}
+
+.pro-card {
+    background-color: var(--white);
+
+    padding: 30px;
+
+    border-radius: 30px;
+
+    border: 1px solid transparent;
+
+    display: flex;
+    flex-direction: column;
+
+    transition: 0.3s;
+}
+
+.pro-card:hover {
+    transform: translateY(-8px);
+
+    border-color: var(--purple-primary);
+}
+
+.pro-card-top {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    margin-bottom: 20px;
+}
+
+.pro-card-top h3 {
+    font-size: 19px;
+
+    line-height: 1.3;
+}
+
+.pro-registro {
+    color: #777;
+
+    font-size: 13px;
+
+    margin-top: 4px;
+}
+
+.pro-avatar {
+    flex-shrink: 0;
+
+    width: 62px;
+    height: 62px;
+
+    border-radius: 50%;
+
+    background: var(--gradient-main);
+
+    color: var(--white);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.pro-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    margin-bottom: 18px;
+}
+
+.pro-tag-item {
+    padding: 6px 14px;
+
+    border-radius: 30px;
+
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.pro-tag-verde {
+    background-color: rgba(127, 191, 159, 0.2);
+
+    color: var(--green-hover);
+}
+
+.pro-tag-roxo {
+    background-color: rgba(199, 184, 234, 0.3);
+
+    color: var(--purple-dark);
+}
+
+.pro-bio {
+    color: #666;
+
+    line-height: 1.7;
+
+    font-size: 15px;
+
+    margin-bottom: 25px;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.pro-card-footer {
+    margin-top: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.pro-preco small {
+    display: block;
+
+    color: #777;
+
+    font-size: 12px;
+}
+
+.pro-preco strong {
+    font-size: 17px;
+}
+
+.pro-btn-perfil {
+    border: 2px solid var(--green-primary);
+    background: none;
+    cursor: pointer;
+
+    color: var(--green-primary);
+
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 500;
+
+    padding: 10px 22px;
+
+    border-radius: 50px;
+
+    transition: 0.3s;
+}
+
+.pro-btn-perfil:hover {
+    background-color: var(--green-primary);
+    color: var(--white);
+}
+
+.pro-empty {
+    text-align: center;
+
+    color: #777;
+
+    padding: 50px 0;
+}
+
+.pro-disclaimer {
+    text-align: center;
+
+    color: #777;
+
+    font-size: 14px;
+
+    margin-top: 50px;
+}
+
+
+/* ========================= */
+/* MODAL DO PERFIL (PÚBLICO) */
+/* ========================= */
+
+.pro-modal-overlay {
+    position: fixed;
+    inset: 0;
+
+    background-color: rgba(46, 46, 46, 0.5);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    z-index: 1000;
+}
+
+.pro-modal-overlay[hidden] {
+    display: none;
+}
+
+.pro-modal {
+    position: relative;
+
+    width: 100%;
+    max-width: 600px;
+
+    max-height: 90vh;
+    overflow-y: auto;
+
+    background-color: var(--white);
+
+    border-radius: 30px;
+
+    padding: 40px;
+}
+
+.pro-modal-close {
+    position: absolute;
+    top: 18px;
+    right: 22px;
+
+    border: none;
+    background: none;
+    cursor: pointer;
+
+    font-size: 32px;
+    line-height: 1;
+
+    color: #777;
+}
+
+.pro-modal-close:hover {
+    color: var(--gray-text);
+}
+
+.pro-modal-head {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+
+    margin-bottom: 28px;
+}
+
+.pro-modal-head h2 {
+    font-size: 24px;
+}
+
+.pro-modal-head p {
+    color: #777;
+
+    margin-top: 4px;
+}
+
+.pro-modal-info {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 18px;
+
+    background-color: var(--gray-light);
+
+    border-radius: 20px;
+
+    padding: 22px;
+
+    margin-bottom: 24px;
+}
+
+.pro-modal-info span {
+    display: block;
+
+    color: #777;
+
+    font-size: 13px;
+
+    margin-bottom: 4px;
+}
+
+.pro-modal-info strong {
+    font-size: 15px;
+}
+
+.pro-modal-bio {
+    color: #555;
+
+    line-height: 1.8;
+
+    margin-bottom: 28px;
+}
+
+.pro-modal-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.pro-modal-phone {
+    color: var(--green-hover);
+
+    font-weight: 600;
+}
+
+.pro-modal-phone[hidden] {
+    display: none;
+}
+
+
+/* ========================= */
+/* PÁGINA DE GESTÃO (ADMIN) - EXTRAS */
+/* ========================= */
+
+.badge-pendente {
+    background-color: #FFF4D6;
+
+    color: #8A6100;
+}
+
+.badge-inativo {
+    background-color: #ECECEC;
+
+    color: #666;
+}
+
+.acao-aprovar {
+    color: var(--purple-dark);
+}
+
+
+/* ========================= */
+/* RESPONSIVO */
+/* ========================= */
+
+@media (max-width: 1200px) {
+
+    .pro-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+@media (max-width: 992px) {
+
+    .pro-toolbar {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .pro-toolbar input {
+        grid-column: 1 / -1;
+    }
+
+}
+
+@media (max-width: 768px) {
+
+    .pro-header h1 {
+        font-size: 36px;
+    }
+
+    .pro-header p {
+        font-size: 16px;
+    }
+
+    .pro-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+@media (max-width: 500px) {
+
+    .pro-page {
+        padding: 120px 6% 60px;
+    }
+
+    .pro-toolbar {
+        grid-template-columns: 1fr;
+    }
+
+    .pro-modal {
+        padding: 35px 22px;
+    }
+
+    .pro-modal-info {
+        grid-template-columns: 1fr;
+    }
+
+    .pro-modal-actions .primary-button {
+        width: 100%;
+    }
+
+}

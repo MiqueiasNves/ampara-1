@@ -1,0 +1,172 @@
+/* =========================================================
+   Ampara | Ícone de acesso do usuário
+   Salvar em: css/acesso-usuario.css
+
+   Para combinar com o seu tema, defina estas variáveis no
+   :root do style.css (ou mude os valores abaixo):
+     --ampara-cor:        cor principal
+     --ampara-cor-escura: cor no hover
+     --ampara-texto:      cor do texto
+========================================================= */
+
+.user-access {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    margin-right: 12px;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* ----- Botão principal ----- */
+.user-access-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border: 1.5px solid var(--ampara-cor, #7c6bc4);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--ampara-cor, #7c6bc4);
+    font: 500 0.9rem 'Poppins', sans-serif;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, transform 0.2s;
+}
+
+.user-access-btn:hover,
+.user-access-btn:focus-visible {
+    background: var(--ampara-cor, #7c6bc4);
+    color: #fff;
+}
+
+.user-access-btn:focus-visible {
+    outline: 3px solid rgba(124, 107, 196, 0.35);
+    outline-offset: 2px;
+}
+
+.user-access-btn svg {
+    flex-shrink: 0;
+}
+
+/* ----- Avatar com iniciais ----- */
+.user-access-btn.is-logged {
+    padding: 4px 14px 4px 4px;
+}
+
+.user-access-avatar {
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--ampara-cor, #7c6bc4);
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: background 0.2s, color 0.2s;
+}
+
+.user-access-btn.is-logged:hover .user-access-avatar,
+.user-access-btn.is-logged:focus-visible .user-access-avatar {
+    background: #fff;
+    color: var(--ampara-cor, #7c6bc4);
+}
+
+/* ----- Menu suspenso ----- */
+.user-access-menu {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    z-index: 1000;
+    min-width: 220px;
+    padding: 8px;
+    border-radius: 14px;
+    background: #fff;
+    box-shadow: 0 12px 32px rgba(40, 30, 80, 0.18);
+    animation: ua-entrada 0.15s ease-out;
+}
+
+.user-access-menu[hidden] {
+    display: none;
+}
+
+.user-access-head {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 10px 12px 12px;
+    margin-bottom: 6px;
+    border-bottom: 1px solid #eee9f7;
+    color: var(--ampara-texto, #2d2540);
+}
+
+.user-access-head strong {
+    font-size: 0.92rem;
+    font-weight: 600;
+}
+
+.user-access-head small {
+    font-size: 0.78rem;
+    color: #7a7390;
+    word-break: break-all;
+}
+
+.user-access-menu a,
+.user-access-menu button {
+    display: block;
+    width: 100%;
+    padding: 10px 12px;
+    border: 0;
+    border-radius: 10px;
+    background: transparent;
+    color: var(--ampara-texto, #2d2540);
+    font: 400 0.9rem 'Poppins', sans-serif;
+    text-align: left;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.user-access-menu a:hover,
+.user-access-menu button:hover,
+.user-access-menu a:focus-visible,
+.user-access-menu button:focus-visible {
+    background: #f1edfb;
+    outline: none;
+}
+
+#ua-sair {
+    color: #b3374a;
+}
+
+@keyframes ua-entrada {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ----- Celular: só o ícone, sem texto ----- */
+@media (max-width: 640px) {
+    .user-access {
+        margin-right: 6px;
+    }
+
+    .user-access-label {
+        display: none;
+    }
+
+    .user-access-btn {
+        padding: 8px;
+    }
+
+    .user-access-btn.is-logged {
+        padding: 3px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .user-access-menu { animation: none; }
+    .user-access-btn,
+    .user-access-avatar { transition: none; }
+}

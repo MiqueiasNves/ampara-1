@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Entrar | Ampara</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/acesso-usuario.css">
+
+    <style>
+        .auth-wrap {
+            min-height: 70vh;
+            display: grid;
+            place-items: center;
+            padding: 40px 16px 60px;
+            font-family: 'Poppins', sans-serif;
+        }
+        .auth-card {
+            width: 100%;
+            max-width: 420px;
+            padding: 32px 28px;
+            border-radius: 20px;
+            background: #fff;
+            box-shadow: 0 12px 36px rgba(40, 30, 80, 0.12);
+        }
+        .auth-card h1 { margin: 0 0 6px; font-size: 1.6rem; color: #2d2540; }
+        .auth-card .sub { margin: 0 0 22px; color: #7a7390; font-size: 0.92rem; }
+
+        .auth-tabs {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 6px;
+            padding: 5px; margin-bottom: 22px;
+            border-radius: 999px; background: #f1edfb;
+        }
+        .auth-tab {
+            padding: 9px; border: 0; border-radius: 999px;
+            background: transparent; color: #6b5fb0;
+            font: 500 0.9rem 'Poppins', sans-serif; cursor: pointer;
+        }
+        .auth-tab[aria-selected="true"] {
+            background: #fff; color: #2d2540;
+            box-shadow: 0 2px 8px rgba(40, 30, 80, 0.12);
+        }
+
+        .auth-field { margin-bottom: 14px; }
+        .auth-field label {
+            display: block; margin-bottom: 6px;
+            font-size: 0.85rem; font-weight: 500; color: #2d2540;
+        }
+        .auth-field input[type="text"],
+        .auth-field input[type="email"],
+        .auth-field input[type="password"] {
+            width: 100%; padding: 12px 14px; box-sizing: border-box;
+            border: 1.5px solid #ddd6f0; border-radius: 12px;
+            font: 400 0.95rem 'Poppins', sans-serif; color: #2d2540;
+        }
+        .auth-field input:focus {
+            outline: none; border-color: #7c6bc4;
+            box-shadow: 0 0 0 3px rgba(124, 107, 196, 0.2);
+        }
+        .auth-check {
+            display: flex; align-items: center; gap: 8px;
+            margin: 4px 0 18px; font-size: 0.85rem; color: #5b5470;
+        }
+        .auth-submit {
+            width: 100%; padding: 13px; border: 0; border-radius: 999px;
+            background: #7c6bc4; color: #fff;
+            font: 600 0.95rem 'Poppins', sans-serif; cursor: pointer;
+            transition: background 0.2s;
+        }
+        .auth-submit:hover { background: #6a59b3; }
+        .auth-msg {
+            min-height: 20px; margin: 0 0 12px;
+            font-size: 0.85rem; color: #b3374a;
+        }
+        .auth-note {
+            margin-top: 18px; font-size: 0.78rem; color: #8a8399; text-align: center;
+        }
+        [hidden] { display: none !important; }
+    </style>
+    <link rel="stylesheet" href="../css/usuario-menu.css">
+</head>
+
+<body>
+
+<header class="header">
+    <nav class="navbar" aria-label="Principal">
+        <a class="logo" href="../index.html"><img src="../assets/images/logo.png" alt="Ampara – página inicial"></a>
+        <ul class="nav-links">
+            <li><a href="../index.html">Início</a></li>
+            <li><a href="./saude-mental.html">Saúde Mental</a></li>
+            <li><a href="./reeduque-sua-mente.html">Reeduque sua mente</a></li>
+            <li><a href="./profissionais.html">Profissionais</a></li>
+            <li><a href="./voce-nao-esta-sozinho.html">Apoio</a></li>
+        </ul>
+        <a href="./converse-com-ampara.html" class="nav-button">Converse com a Ampara</a>
+            <div class="user-menu">
+            <button type="button" class="user-menu-btn" aria-label="Conta do usuário" aria-haspopup="true" aria-expanded="false">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+            </button>
+            <div class="user-menu-dropdown" hidden>
+                <a href="./login.html">Entrar</a>
+                <a href="./login.html#cadastro" class="destaque">Criar conta</a>
+                <a href="./cadastro-profissional.html">Sou profissional</a>
+            </div>
+        </div>
+
+    </nav>
+</header>
+
+<main class="auth-wrap">
+    <div class="auth-card">
+        <h1 id="auth-titulo">Entrar</h1>
+        <p class="sub" id="auth-sub">Acesse sua área para agendar e acompanhar suas consultas.</p>
+
+        <div class="auth-tabs" role="tablist">
+            <button class="auth-tab" role="tab" id="tab-entrar" aria-selected="true" type="button">Entrar</button>
+            <button class="auth-tab" role="tab" id="tab-cadastro" aria-selected="false" type="button">Criar conta</button>
+        </div>
+
+        <p class="auth-msg" id="auth-msg" role="alert"></p>
+
+        <!-- LOGIN -->
+        <form id="form-login" novalidate>
+            <div class="auth-field">
+                <label for="l-email">E-mail</label>
+                <input type="email" id="l-email" autocomplete="email" required>
+            </div>
+            <div class="auth-field">
+                <label for="l-senha">Senha</label>
+                <input type="password" id="l-senha" autocomplete="current-password" required>
+            </div>
+            <label class="auth-check">
+                <input type="checkbox" id="l-manter"> Manter conectado neste dispositivo
+            </label>
+            <button class="auth-submit" type="submit">Entrar</button>
+            <p class="auth-note">Profissional? Entre com o e-mail e a senha do seu cadastro profissional.</p>
+        </form>
+
+        <!-- CADASTRO -->
+        <form id="form-cadastro" hidden novalidate>
+            <div class="auth-tabs" role="tablist" aria-label="Tipo de conta">
+                <button class="auth-tab" role="tab" id="perfil-usuario" aria-selected="true" type="button">Sou usuário</button>
+                <button class="auth-tab" role="tab" id="perfil-profissional" aria-selected="false" type="button">Sou profissional</button>
+            </div>
+            <div class="auth-field">
+                <label for="c-nome">Nome completo</label>
+                <input type="text" id="c-nome" autocomplete="name" required>
+            </div>
+            <div class="auth-field">
+                <label for="c-email">E-mail</label>
+                <input type="email" id="c-email" autocomplete="email" required>
+            </div>
+            <div class="auth-field">
+                <label for="c-senha">Senha (mínimo 6 caracteres)</label>
+                <input type="password" id="c-senha" autocomplete="new-password" required>
+            </div>
+            <div class="auth-field">
+                <label for="c-senha2">Confirmar senha</label>
+                <input type="password" id="c-senha2" autocomplete="new-password" required>
+            </div>
+            <button class="auth-submit" type="submit">Criar conta</button>
+        </form>
+
+    </div>
+</main>
+
+<footer class="footer">
+    <div class="footer-content">
+        <p>© 2026 Ampara — Projeto acadêmico de apoio à saúde mental.</p>
+        <span>O Ampara não substitui acompanhamento psicológico ou médico profissional.</span>
+    </div>
+</footer>
+
+<script src="../js/api.js"></script>
+<script src="../js/acesso-usuario.js"></script>
+<script>
+    (function () {
+        'use strict';
+
+        var $ = function (s) { return document.querySelector(s); };
+
+        function msg(t) { $('#auth-msg').textContent = t || ''; }
+
+        function ocupado(form, sim) {
+            var b = form.querySelector('.auth-submit');
+            b.disabled = sim;
+            b.style.opacity = sim ? '0.7' : '';
+        }
+
+        /* Só aceita voltar para uma página .html do próprio site (evita redirecionar para outro endereço) */
+        function destino(resposta) {
+            /* profissional sempre vai para a própria área */
+            if (resposta && resposta.usuario && resposta.usuario.tipo === 'profissional') return './area-profissional.html';
+            var v = new URLSearchParams(location.search).get('voltar') || '';
+            return /^(\.{0,2}\/)?[\w\-\/.]+\.html$/.test(v) && v.indexOf('//') === -1 ? v : './minha-area.html';
+        }
+
+        function entrou(resposta, manter) {
+            AmparaAPI.salvarSessao(resposta, manter);
+            window.location.href = destino(resposta);
+        }
+
+        /* ---------- abas ---------- */
+        function aba(qual) {
+            var entrar = qual === 'entrar';
+            $('#tab-entrar').setAttribute('aria-selected', String(entrar));
+            $('#tab-cadastro').setAttribute('aria-selected', String(!entrar));
+            $('#form-login').hidden = !entrar;
+            $('#form-cadastro').hidden = entrar;
+            $('#auth-titulo').textContent = entrar ? 'Entrar' : 'Criar conta';
+            $('#auth-sub').textContent = entrar
+                ? 'Acesse sua área para agendar e acompanhar suas consultas.'
+                : 'Leva menos de um minuto. Depois é só entrar.';
+            msg('');
+        }
+        $('#tab-entrar').addEventListener('click', function () { aba('entrar'); });
+        $('#tab-cadastro').addEventListener('click', function () { aba('cadastro'); });
+        if (location.hash === '#cadastro') aba('cadastro');
+
+        /* seletor de tipo de conta (dentro de "Criar conta"): profissional tem página própria */
+        $('#perfil-profissional').addEventListener('click', function () {
+            window.location.href = './cadastro-profissional.html';
+        });
+
+        /* ---------- login ---------- */
+        $('#form-login').addEventListener('submit', function (e) {
+            e.preventDefault();
+            var form = e.currentTarget;
+            var email = $('#l-email').value.trim();
+            var senha = $('#l-senha').value;
+            if (!email || !senha) { msg('Preencha e-mail e senha.'); return; }
+
+            msg('');
+            ocupado(form, true);
+            AmparaAPI.entrar(email, senha)
+                .then(function (r) { entrou(r, $('#l-manter').checked); })
+                .catch(function (err) { msg(err.message); ocupado(form, false); });
+        });
+
+        /* ---------- cadastro ---------- */
+        $('#form-cadastro').addEventListener('submit', function (e) {
+            e.preventDefault();
+            var form = e.currentTarget;
+            var nome = $('#c-nome').value.trim();
+            var email = $('#c-email').value.trim();
+            var senha = $('#c-senha').value;
+            var senha2 = $('#c-senha2').value;
+
+            if (nome.length < 2) { msg('Informe seu nome.'); return; }
+            if (!/^\S+@\S+\.\S+$/.test(email)) { msg('Informe um e-mail válido.'); return; }
+            if (senha.length < 6) { msg('A senha precisa ter pelo menos 6 caracteres.'); return; }
+            if (senha !== senha2) { msg('As senhas não conferem.'); return; }
+
+            msg('');
+            ocupado(form, true);
+            AmparaAPI.cadastrar(nome, email, senha)
+                .then(function (r) { entrou(r, false); })
+                .catch(function (err) { msg(err.message); ocupado(form, false); });
+        });
+    })();
+</script>
+    <script src="../js/usuario-menu.js"></script>
+</body>
+</html>

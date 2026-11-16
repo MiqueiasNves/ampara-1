@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <title>Ampara | Profissionais</title>
+
+    <!-- Fonte -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/profissionais.css">
+    <link rel="stylesheet" href="../css/usuario-menu.css">
+</head>
+
+<body>
+
+<!-- ========================= -->
+<!-- HEADER -->
+<!-- ========================= -->
+
+<header class="header">
+
+    <nav class="navbar">
+
+        <div class="logo">
+            <a href="../index.html">
+                <img src="../assets/images/logo.png" alt="Logo Ampara">
+            </a>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="../index.html">Início</a></li>
+            <li><a href="./saude-mental.html">Saúde Mental</a></li>
+            <li><a href="./reeduque-sua-mente.html">Reeduque sua mente</a></li>
+            <li><a href="./profissionais.html">Profissionais</a></li>
+            <li><a href="./voce-nao-esta-sozinho.html">Apoio</a></li>
+        </ul>
+
+        <a href="./converse-com-ampara.html" class="nav-button">
+            Converse com a Ampara
+        </a>
+
+            <div class="user-menu">
+            <button type="button" class="user-menu-btn" aria-label="Conta do usuário" aria-haspopup="true" aria-expanded="false">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+            </button>
+            <div class="user-menu-dropdown" hidden>
+                <a href="./login.html">Entrar</a>
+                <a href="./login.html#cadastro" class="destaque">Criar conta</a>
+                <a href="./cadastro-profissional.html">Sou profissional</a>
+            </div>
+        </div>
+
+    </nav>
+
+</header>
+
+<!-- ========================= -->
+<!-- TOPO DA PÁGINA -->
+<!-- ========================= -->
+
+<main class="pro-page">
+
+    <div class="pro-header">
+
+        <span class="pro-tag">atendimento profissional</span>
+
+        <h1>Encontre um profissional</h1>
+
+        <p>
+            Conheça os profissionais disponíveis para atendimento, compare
+            especialidades e valores e entre em contato com quem fizer
+            mais sentido para você.
+        </p>
+
+    </div>
+
+    <!-- Aviso de apoio imediato -->
+    <div class="pro-notice">
+        <strong>Precisa de ajuda agora?</strong>
+        Se você está em sofrimento intenso, ligue para o <strong>188 (CVV)</strong>,
+        gratuito e 24 horas, ou para o <strong>192 (SAMU)</strong> em caso de emergência.
+    </div>
+
+    <!-- Busca e filtros -->
+    <div class="pro-toolbar">
+
+        <input type="search" id="busca" placeholder="Buscar por nome ou especialidade..." aria-label="Buscar profissionais">
+
+        <select id="filtro-especialidade" aria-label="Filtrar por especialidade">
+            <option value="">Todas as especialidades</option>
+        </select>
+
+        <select id="filtro-modalidade" aria-label="Filtrar por modalidade">
+            <option value="">Online e presencial</option>
+        </select>
+
+    </div>
+
+    <p class="pro-count" id="contagem"></p>
+
+    <!-- Lista -->
+    <div class="pro-grid" id="lista"></div>
+
+    <p class="pro-empty" id="vazio" hidden>
+        Nenhum profissional encontrado com esses filtros.
+    </p>
+
+    <p class="pro-disclaimer">
+        Os profissionais exibidos são fictícios e foram criados apenas para a
+        demonstração deste projeto acadêmico.
+    </p>
+
+</main>
+
+<!-- ========================= -->
+<!-- MODAL DO PERFIL -->
+<!-- ========================= -->
+
+<div class="pro-modal-overlay" id="pro-modal" hidden>
+
+    <div class="pro-modal" role="dialog" aria-modal="true" aria-labelledby="pm-nome">
+
+        <button type="button" class="pro-modal-close" id="pm-fechar" aria-label="Fechar">×</button>
+
+        <div class="pro-modal-head">
+            <div class="pro-avatar" id="pm-avatar"></div>
+            <div>
+                <h2 id="pm-nome"></h2>
+                <p id="pm-registro"></p>
+            </div>
+        </div>
+
+        <div class="pro-modal-info">
+            <div><span>Especialidade</span><strong id="pm-especialidade"></strong></div>
+            <div><span>Modalidade</span><strong id="pm-modalidade"></strong></div>
+            <div><span>Valor da sessão</span><strong id="pm-valor"></strong></div>
+            <div><span>Disponibilidade</span><strong id="pm-disponibilidade"></strong></div>
+        </div>
+
+        <p class="pro-modal-bio" id="pm-bio"></p>
+
+        <div class="pro-modal-actions">
+            <a class="primary-button" id="pm-email" href="#">Entrar em contato por e-mail</a>
+            <a class="pro-modal-phone" id="pm-telefone" href="#"></a>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ========================= -->
+<!-- FOOTER -->
+<!-- ========================= -->
+
+<footer class="footer">
+
+    <div class="footer-content">
+
+        <img src="../assets/images/logo.png" alt="Logo Ampara">
+
+        <p>© 2026 Ampara — Projeto acadêmico de apoio à saúde mental.</p>
+
+        <span>
+        O Ampara não substitui acompanhamento psicológico
+        ou médico profissional.
+      </span>
+
+    </div>
+
+</footer>
+
+<!-- ========================= -->
+<!-- SCRIPTS -->
+<!-- ========================= -->
+
+<script src="../js/api.js"></script>
+<script src="../js/profissionais-dados.js"></script>
+
+<script>
+    const lista = document.getElementById("lista");
+    const vazio = document.getElementById("vazio");
+    const contagem = document.getElementById("contagem");
+    const busca = document.getElementById("busca");
+    const filtroEspecialidade = document.getElementById("filtro-especialidade");
+    const filtroModalidade = document.getElementById("filtro-modalidade");
+
+    const modal = document.getElementById("pro-modal");
+
+    /* Só aparecem para o público os profissionais com status "ativo".
+       Vêm de duas origens: os de demonstração (neste navegador) e os cadastrados no site (servidor). */
+    const profissionaisLocais = carregarProfissionais()
+        .filter(p => p.status === "ativo")
+        .map(p => Object.assign({ origem: "local" }, p));
+    let profissionais = profissionaisLocais.slice();
+
+    function criar(tag, classe, texto) {
+        const el = document.createElement(tag);
+        if (classe) el.className = classe;
+        if (texto !== undefined) el.textContent = texto;
+        return el;
+    }
+
+    function preencherFiltros() {
+        AMPARA_ESPECIALIDADES.forEach(e => {
+            filtroEspecialidade.appendChild(new Option(e, e));
+        });
+
+        AMPARA_MODALIDADES.forEach(m => {
+            filtroModalidade.appendChild(new Option(m, m));
+        });
+
+        filtroModalidade.options[0].textContent = "Todas as modalidades";
+    }
+
+    function filtrar() {
+        const termo = busca.value.trim().toLowerCase();
+
+        return profissionais
+            .filter(p => {
+                const bateBusca = !termo ||
+                    p.nome.toLowerCase().includes(termo) ||
+                    p.especialidade.toLowerCase().includes(termo);
+                const bateEsp = !filtroEspecialidade.value || p.especialidade === filtroEspecialidade.value;
+                const bateMod = !filtroModalidade.value || p.modalidade === filtroModalidade.value;
+                return bateBusca && bateEsp && bateMod;
+            })
+            .sort((a, b) => a.nome.localeCompare(b.nome, "pt-BR"));
+    }
+
+    function desenhar() {
+        lista.textContent = "";
+
+        const itens = filtrar();
+
+        vazio.hidden = itens.length > 0;
+        contagem.textContent = itens.length === 1
+            ? "1 profissional encontrado"
+            : itens.length + " profissionais encontrados";
+
+        itens.forEach(p => {
+            const card = criar("article", "pro-card");
+
+            const topo = criar("div", "pro-card-top");
+            topo.appendChild(criar("div", "pro-avatar", iniciaisDoNome(p.nome)));
+
+            const ident = criar("div");
+            ident.appendChild(criar("h3", "", p.nome));
+            ident.appendChild(criar("p", "pro-registro", p.tipo + " • " + p.registro));
+            topo.appendChild(ident);
+
+            card.appendChild(topo);
+
+            const tags = criar("div", "pro-tags");
+            tags.appendChild(criar("span", "pro-tag-item pro-tag-verde", p.especialidade));
+            tags.appendChild(criar("span", "pro-tag-item pro-tag-roxo", p.modalidade));
+            card.appendChild(tags);
+
+            card.appendChild(criar("p", "pro-bio", p.bio));
+
+            const rodape = criar("div", "pro-card-footer");
+
+            const preco = criar("div", "pro-preco");
+            preco.appendChild(criar("small", "", "Sessão"));
+            preco.appendChild(criar("strong", "", formatarValor(p.valor)));
+            rodape.appendChild(preco);
+
+            const botao = criar("button", "pro-btn-perfil", "Ver perfil");
+            botao.type = "button";
+            botao.addEventListener("click", () => abrirPerfil(p));
+            rodape.appendChild(botao);
+
+            card.appendChild(rodape);
+
+            lista.appendChild(card);
+        });
+    }
+
+    function abrirPerfil(p) {
+        document.getElementById("pm-avatar").textContent = iniciaisDoNome(p.nome);
+        document.getElementById("pm-nome").textContent = p.nome;
+        document.getElementById("pm-registro").textContent = p.tipo + " • " + p.registro;
+        document.getElementById("pm-especialidade").textContent = p.especialidade;
+        document.getElementById("pm-modalidade").textContent = p.modalidade;
+        document.getElementById("pm-valor").textContent = formatarValor(p.valor);
+        document.getElementById("pm-disponibilidade").textContent = p.disponibilidade || "A combinar";
+        document.getElementById("pm-bio").textContent = p.bio;
+
+        const botaoContato = document.getElementById("pm-email");
+        if (p.origem === "servidor") {
+            /* o e-mail dos profissionais do site não é público: o contato é pelo agendamento */
+            botaoContato.textContent = "Agendar consulta";
+            botaoContato.href = "./minha-area.html#buscar";
+        } else {
+            const assunto = encodeURIComponent("Solicitação de atendimento - Ampara");
+            botaoContato.textContent = "Entrar em contato por e-mail";
+            botaoContato.href = "mailto:" + p.email + "?subject=" + assunto;
+        }
+
+        const tel = document.getElementById("pm-telefone");
+        if (p.telefone) {
+            tel.textContent = p.telefone;
+            tel.href = "tel:" + p.telefone.replace(/[^\d+]/g, "");
+            tel.hidden = false;
+        } else {
+            tel.hidden = true;
+        }
+
+        modal.hidden = false;
+    }
+
+    function fecharPerfil() {
+        modal.hidden = true;
+    }
+
+    document.getElementById("pm-fechar").addEventListener("click", fecharPerfil);
+
+    modal.addEventListener("click", (e) => {
+        if (e.target === modal) fecharPerfil();
+    });
+
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") fecharPerfil();
+    });
+
+    busca.addEventListener("input", desenhar);
+    filtroEspecialidade.addEventListener("change", desenhar);
+    filtroModalidade.addEventListener("change", desenhar);
+
+    preencherFiltros();
+    desenhar();
+
+    /* Profissionais cadastrados no site (aprovados pelo admin). Se o servidor estiver desligado, segue só com os locais. */
+    AmparaAPI.chamar("/api/profissionais")
+        .then(r => {
+            const doServidor = (r.profissionais || []).map(p => ({
+                origem: "servidor", id: p.id, nome: p.nome, tipo: p.tipo, registro: p.registro,
+                especialidade: p.especialidade, modalidade: p.modalidade, valor: Number(p.valor),
+                disponibilidade: p.disponibilidade, bio: p.bio, status: "ativo"
+            }));
+            profissionais = doServidor.concat(profissionaisLocais);
+            desenhar();
+        })
+        .catch(() => { /* sem servidor: mantém a lista local */ });
+</script>
+
+    <script src="../js/usuario-menu.js"></script>
+</body>
+</html>

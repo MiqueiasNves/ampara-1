@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <title>Ampara | Login do Administrador</title>
+
+    <!-- Fonte -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS geral do projeto -->
+    <link rel="stylesheet" href="../css/style.css">
+
+</head>
+
+<body>
+
+<!-- ========================= -->
+<!-- HEADER -->
+<!-- ========================= -->
+
+<header class="header">
+    <nav class="navbar">
+
+        <div class="logo">
+            <img src="../assets/images/logo.png" alt="Logo Ampara">
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="../index.html">Início</a></li>
+        </ul>
+
+        <a href="../index.html" class="nav-button">
+            Voltar ao site
+        </a>
+
+    </nav>
+</header>
+
+<!-- ========================= -->
+<!-- LOGIN -->
+<!-- ========================= -->
+
+<section class="login-section">
+
+    <div class="login-box">
+
+        <img src="../assets/images/logo2.png" alt="Ampara">
+
+        <h1>Acesso do Administrador</h1>
+
+        <p>Entre com suas credenciais para acessar o painel de gestão.</p>
+
+        <form id="form-login-admin" novalidate>
+
+            <div>
+                <label for="usuario">E-mail</label>
+                <input type="email" id="usuario" name="usuario" placeholder="Digite o e-mail do administrador" autocomplete="username" required>
+            </div>
+
+            <div>
+                <label for="senha">Senha</label>
+                <input type="password" id="senha" name="senha" placeholder="Digite sua senha" autocomplete="current-password" required>
+            </div>
+
+            <div class="login-erro" id="login-erro" role="alert">
+                Usuário ou senha incorretos.
+            </div>
+
+            <button type="submit" class="primary-button">
+                Entrar
+            </button>
+
+        </form>
+
+        <a href="../index.html" class="login-voltar">← Voltar para a página inicial</a>
+
+    </div>
+
+</section>
+
+<!-- ========================= -->
+<!-- FOOTER -->
+<!-- ========================= -->
+
+<footer class="footer">
+    <div class="footer-content">
+
+        <img src="../assets/images/logo.png" alt="Logo Ampara">
+
+        <p>© 2026 Ampara — Painel Administrativo do Sistema.</p>
+
+        <span>Acesso restrito a administradores e equipe autorizada.</span>
+
+    </div>
+</footer>
+
+<!-- ========================= -->
+<!-- SCRIPT DO LOGIN -->
+<!-- ========================= -->
+
+<script src="../js/api.js"></script>
+<script>
+    const form = document.getElementById("form-login-admin");
+    const erro = document.getElementById("login-erro");
+    const botao = form.querySelector("button[type=submit]");
+
+    function mostrarErro(texto) {
+        erro.textContent = texto;
+        erro.classList.add("visivel");
+    }
+
+    // Se já tem uma sessão de administrador válida neste navegador, vai direto para o painel
+    if (AmparaAPI.sessaoAdmin() && sessionStorage.getItem("adminLogado") === "true") {
+        window.location.href = "../admin.html";
+    }
+
+    form.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const email = document.getElementById("usuario").value.trim();
+        const senha = document.getElementById("senha").value;
+
+        erro.classList.remove("visivel");
+        if (!email || !senha) {
+            mostrarErro("Preencha e-mail e senha.");
+            return;
+        }
+
+        botao.disabled = true;
+        AmparaAPI.entrarAdmin(email, senha)
+            .then((resposta) => {
+                AmparaAPI.salvarSessaoAdmin(resposta);
+                window.location.href = "../admin.html";
+            })
+            .catch((err) => {
+                // sem "status" = o servidor nem respondeu (desligado ou endereço errado)
+                mostrarErro(err.status
+                    ? err.message
+                    : "Não foi possível falar com o servidor. Confira se ele está ligado (node server.js).");
+                botao.disabled = false;
+            });
+    });
+</script>
+
+</body>
+</html>

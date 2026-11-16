@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <title>Ampara | Gerenciar Conteúdos</title>
+
+    <!-- Fonte -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/admin-paginas.css">
+</head>
+
+<body>
+
+<!-- ========================= -->
+<!-- HEADER -->
+<!-- ========================= -->
+
+<header class="header">
+
+    <nav class="navbar">
+
+        <div class="logo">
+            <img src="../assets/images/logo.png" alt="Logo Ampara">
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="../admin.html">Painel Admin</a></li>
+            <li><a href="./gerenciar-usuarios.html">Usuários</a></li>
+            <li><a href="./gerenciar-profissionais.html">Profissionais</a></li>
+            <li><a href="./gerenciar-conteudos.html">Conteúdos</a></li>
+            <li><a href="./gerenciar-servicos.html">Serviços</a></li>
+            <li><a href="./relatorios-auditoria.html">Relatórios</a></li>
+        </ul>
+
+        <a href="../index.html" class="nav-button" id="botao-sair">
+            Sair do Painel
+        </a>
+
+    </nav>
+
+</header>
+
+<!-- ========================= -->
+<!-- GERENCIAR CONTEÚDOS -->
+<!-- ========================= -->
+
+<main class="admin-page">
+
+    <div class="admin-page-header">
+
+        <div>
+            <span class="admin-tag">Módulo de Conteúdos</span>
+            <h1>Gerenciar Conteúdos</h1>
+            <p>Crie, edite ou remova artigos sobre saúde mental, guias de apoio e materiais educativos.</p>
+        </div>
+
+        <button type="button" class="primary-button admin-btn" id="btn-novo">
+            + Novo conteúdo
+        </button>
+
+    </div>
+
+    <!-- Resumo -->
+    <div class="admin-summary">
+        <div class="summary-box">
+            <h3 id="total-todos">0</h3>
+            <p>conteúdos no total</p>
+        </div>
+        <div class="summary-box">
+            <h3 id="total-publicados">0</h3>
+            <p>publicados</p>
+        </div>
+        <div class="summary-box">
+            <h3 id="total-rascunhos">0</h3>
+            <p>rascunhos</p>
+        </div>
+    </div>
+
+    <!-- Barra de busca e filtros -->
+    <div class="admin-toolbar">
+
+        <input type="search" id="busca" placeholder="Buscar por título ou resumo..." aria-label="Buscar conteúdos">
+
+        <select id="filtro-categoria" aria-label="Filtrar por categoria">
+            <option value="">Todas as categorias</option>
+            <option>Ansiedade</option>
+            <option>Depressão</option>
+            <option>Autocuidado</option>
+            <option>Burnout</option>
+            <option>Bem-estar</option>
+            <option>Guia de apoio</option>
+        </select>
+
+        <select id="filtro-status" aria-label="Filtrar por status">
+            <option value="">Todos os status</option>
+            <option value="publicado">Publicado</option>
+            <option value="rascunho">Rascunho</option>
+        </select>
+
+    </div>
+
+    <!-- Tabela -->
+    <div class="table-wrapper">
+
+        <table class="admin-table">
+            <thead>
+            <tr>
+                <th>Título</th>
+                <th>Categoria</th>
+                <th>Status</th>
+                <th>Atualizado em</th>
+                <th>Ações</th>
+            </tr>
+            </thead>
+            <tbody id="tabela-corpo"></tbody>
+        </table>
+
+        <p class="table-empty" id="tabela-vazia" hidden>
+            Nenhum conteúdo encontrado.
+        </p>
+
+    </div>
+
+</main>
+
+<!-- ========================= -->
+<!-- MODAL: CRIAR / EDITAR -->
+<!-- ========================= -->
+
+<div class="modal-overlay" id="modal-form" hidden>
+
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-titulo">
+
+        <h2 id="modal-titulo">Novo conteúdo</h2>
+
+        <form id="form-conteudo" novalidate>
+
+            <input type="hidden" id="campo-id">
+
+            <div class="form-group">
+                <label for="campo-titulo">Título *</label>
+                <input type="text" id="campo-titulo" maxlength="120" placeholder="Ex.: Como lidar com a ansiedade no dia a dia">
+            </div>
+
+            <div class="form-row">
+
+                <div class="form-group">
+                    <label for="campo-categoria">Categoria *</label>
+                    <select id="campo-categoria">
+                        <option value="">Selecione</option>
+                        <option>Ansiedade</option>
+                        <option>Depressão</option>
+                        <option>Autocuidado</option>
+                        <option>Burnout</option>
+                        <option>Bem-estar</option>
+                        <option>Guia de apoio</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="campo-status">Status</label>
+                    <select id="campo-status">
+                        <option value="rascunho">Rascunho</option>
+                        <option value="publicado">Publicado</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <label for="campo-resumo">Resumo *</label>
+                <textarea id="campo-resumo" rows="2" maxlength="220" placeholder="Uma ou duas frases sobre o conteúdo"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="campo-texto">Conteúdo *</label>
+                <textarea id="campo-texto" rows="7" placeholder="Escreva o artigo aqui..."></textarea>
+            </div>
+
+            <p class="form-erro" id="form-erro" hidden></p>
+
+            <div class="modal-actions">
+                <button type="button" class="secondary-button admin-btn" id="btn-cancelar">Cancelar</button>
+                <button type="submit" class="primary-button admin-btn">Salvar</button>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<!-- ========================= -->
+<!-- MODAL: CONFIRMAR EXCLUSÃO -->
+<!-- ========================= -->
+
+<div class="modal-overlay" id="modal-excluir" hidden>
+
+    <div class="modal modal-small" role="alertdialog" aria-modal="true" aria-labelledby="excluir-titulo">
+
+        <h2 id="excluir-titulo">Excluir conteúdo?</h2>
+
+        <p id="excluir-texto"></p>
+
+        <div class="modal-actions">
+            <button type="button" class="secondary-button admin-btn" id="btn-excluir-cancelar">Cancelar</button>
+            <button type="button" class="primary-button admin-btn btn-perigo" id="btn-excluir-confirmar">Excluir</button>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ========================= -->
+<!-- FOOTER -->
+<!-- ========================= -->
+
+<footer class="footer">
+
+    <div class="footer-content">
+
+        <img src="../assets/images/logo.png" alt="Logo Ampara">
+
+        <p>© 2026 Ampara — Painel Administrativo do Sistema.</p>
+
+        <span>Acesso restrito a administradores e equipe autorizada.</span>
+
+    </div>
+
+</footer>
+
+<!-- ========================= -->
+<!-- SCRIPT DA PÁGINA -->
+<!-- ========================= -->
+
+<script>
+    /* ----- Proteção: só entra quem fez login ----- */
+    if (sessionStorage.getItem("adminLogado") !== "true") {
+        window.location.href = "./login-admin.html";
+    }
+
+    /* ----- Sair do painel ----- */
+    document.getElementById("botao-sair").addEventListener("click", () => {
+        sessionStorage.removeItem("adminLogado");
+    });
+
+    /* ----- Dados (salvos no navegador via localStorage) ----- */
+    const CHAVE = "ampara_conteudos";
+
+    const EXEMPLOS = [
+        {
+            id: 1,
+            titulo: "Entendendo a ansiedade",
+            categoria: "Ansiedade",
+            status: "publicado",
+            resumo: "O que é a ansiedade, quando ela passa a ser um problema e como buscar ajuda.",
+            texto: "Texto de exemplo sobre ansiedade.",
+            atualizado: "2026-10-10"
+        },
+        {
+            id: 2,
+            titulo: "Pequenos hábitos de autocuidado",
+            categoria: "Autocuidado",
+            status: "publicado",
+            resumo: "Mudanças simples na rotina que ajudam a cuidar da saúde emocional.",
+            texto: "Texto de exemplo sobre autocuidado.",
+            atualizado: "2026-10-14"
+        },
+        {
+            id: 3,
+            titulo: "Sinais de burnout no trabalho",
+            categoria: "Burnout",
+            status: "rascunho",
+            resumo: "Como reconhecer o esgotamento profissional e o que fazer a respeito.",
+            texto: "Texto de exemplo sobre burnout.",
+            atualizado: "2026-10-18"
+        }
+    ];
+
+    function carregar() {
+        try {
+            const salvo = localStorage.getItem(CHAVE);
+            if (salvo) return JSON.parse(salvo);
+        } catch (e) { /* ignora e usa os exemplos */ }
+        return EXEMPLOS.slice();
+    }
+
+    function salvar() {
+        try {
+            localStorage.setItem(CHAVE, JSON.stringify(conteudos));
+        } catch (e) { /* armazenamento indisponível */ }
+    }
+
+    let conteudos = carregar();
+    let idParaExcluir = null;
+
+    /* ----- Elementos ----- */
+    const corpo = document.getElementById("tabela-corpo");
+    const vazia = document.getElementById("tabela-vazia");
+    const busca = document.getElementById("busca");
+    const filtroCategoria = document.getElementById("filtro-categoria");
+    const filtroStatus = document.getElementById("filtro-status");
+
+    const modalForm = document.getElementById("modal-form");
+    const modalExcluir = document.getElementById("modal-excluir");
+    const form = document.getElementById("form-conteudo");
+    const formErro = document.getElementById("form-erro");
+
+    /* ----- Utilidades ----- */
+    function formatarData(iso) {
+        const [a, m, d] = iso.split("-");
+        return d + "/" + m + "/" + a;
+    }
+
+    function hoje() {
+        const d = new Date();
+        const mes = String(d.getMonth() + 1).padStart(2, "0");
+        const dia = String(d.getDate()).padStart(2, "0");
+        return d.getFullYear() + "-" + mes + "-" + dia;
+    }
+
+    function criar(tag, classe, texto) {
+        const el = document.createElement(tag);
+        if (classe) el.className = classe;
+        if (texto !== undefined) el.textContent = texto;
+        return el;
+    }
+
+    /* ----- Resumo e tabela ----- */
+    function atualizarResumo() {
+        document.getElementById("total-todos").textContent = conteudos.length;
+        document.getElementById("total-publicados").textContent =
+            conteudos.filter(c => c.status === "publicado").length;
+        document.getElementById("total-rascunhos").textContent =
+            conteudos.filter(c => c.status === "rascunho").length;
+    }
+
+    function filtrados() {
+        const termo = busca.value.trim().toLowerCase();
+        return conteudos
+            .filter(c => {
+                const bateBusca = !termo ||
+                    c.titulo.toLowerCase().includes(termo) ||
+                    c.resumo.toLowerCase().includes(termo);
+                const bateCategoria = !filtroCategoria.value || c.categoria === filtroCategoria.value;
+                const bateStatus = !filtroStatus.value || c.status === filtroStatus.value;
+                return bateBusca && bateCategoria && bateStatus;
+            })
+            .sort((a, b) => b.atualizado.localeCompare(a.atualizado));
+    }
+
+    function desenharTabela() {
+        corpo.textContent = "";
+
+        const lista = filtrados();
+        vazia.hidden = lista.length > 0;
+
+        lista.forEach(c => {
+            const tr = criar("tr");
+
+            const tdTitulo = criar("td", "col-titulo");
+            tdTitulo.appendChild(criar("strong", "", c.titulo));
+            tdTitulo.appendChild(criar("small", "", c.resumo));
+            tr.appendChild(tdTitulo);
+
+            tr.appendChild(criar("td", "", c.categoria));
+
+            const tdStatus = criar("td");
+            tdStatus.appendChild(
+                criar("span", "badge badge-" + c.status, c.status === "publicado" ? "Publicado" : "Rascunho")
+            );
+            tr.appendChild(tdStatus);
+
+            tr.appendChild(criar("td", "", formatarData(c.atualizado)));
+
+            const tdAcoes = criar("td", "col-acoes");
+
+            const btnEditar = criar("button", "acao-btn", "Editar");
+            btnEditar.type = "button";
+            btnEditar.addEventListener("click", () => abrirFormulario(c.id));
+
+            const btnExcluir = criar("button", "acao-btn acao-excluir", "Excluir");
+            btnExcluir.type = "button";
+            btnExcluir.addEventListener("click", () => abrirExclusao(c.id));
+
+            tdAcoes.appendChild(btnEditar);
+            tdAcoes.appendChild(btnExcluir);
+            tr.appendChild(tdAcoes);
+
+            corpo.appendChild(tr);
+        });
+
+        atualizarResumo();
+    }
+
+    /* ----- Formulário (criar / editar) ----- */
+    function abrirFormulario(id) {
+        form.reset();
+        formErro.hidden = true;
+        document.getElementById("campo-id").value = "";
+        document.getElementById("modal-titulo").textContent = "Novo conteúdo";
+
+        if (id) {
+            const c = conteudos.find(x => x.id === id);
+            if (!c) return;
+            document.getElementById("modal-titulo").textContent = "Editar conteúdo";
+            document.getElementById("campo-id").value = c.id;
+            document.getElementById("campo-titulo").value = c.titulo;
+            document.getElementById("campo-categoria").value = c.categoria;
+            document.getElementById("campo-status").value = c.status;
+            document.getElementById("campo-resumo").value = c.resumo;
+            document.getElementById("campo-texto").value = c.texto;
+        }
+
+        modalForm.hidden = false;
+        document.getElementById("campo-titulo").focus();
+    }
+
+    function fecharFormulario() {
+        modalForm.hidden = true;
+    }
+
+    form.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const id = document.getElementById("campo-id").value;
+        const titulo = document.getElementById("campo-titulo").value.trim();
+        const categoria = document.getElementById("campo-categoria").value;
+        const status = document.getElementById("campo-status").value;
+        const resumo = document.getElementById("campo-resumo").value.trim();
+        const texto = document.getElementById("campo-texto").value.trim();
+
+        if (!titulo || !categoria || !resumo || !texto) {
+            formErro.textContent = "Preencha título, categoria, resumo e conteúdo.";
+            formErro.hidden = false;
+            return;
+        }
+
+        if (id) {
+            const c = conteudos.find(x => x.id === Number(id));
+            if (c) {
+                c.titulo = titulo;
+                c.categoria = categoria;
+                c.status = status;
+                c.resumo = resumo;
+                c.texto = texto;
+                c.atualizado = hoje();
+            }
+        } else {
+            conteudos.push({
+                id: Date.now(),
+                titulo, categoria, status, resumo, texto,
+                atualizado: hoje()
+            });
+        }
+
+        salvar();
+        fecharFormulario();
+        desenharTabela();
+    });
+
+    /* ----- Exclusão ----- */
+    function abrirExclusao(id) {
+        const c = conteudos.find(x => x.id === id);
+        if (!c) return;
+        idParaExcluir = id;
+        document.getElementById("excluir-texto").textContent =
+            "O conteúdo \"" + c.titulo + "\" será removido. Essa ação não pode ser desfeita.";
+        modalExcluir.hidden = false;
+    }
+
+    function fecharExclusao() {
+        modalExcluir.hidden = true;
+        idParaExcluir = null;
+    }
+
+    document.getElementById("btn-excluir-confirmar").addEventListener("click", () => {
+        conteudos = conteudos.filter(c => c.id !== idParaExcluir);
+        salvar();
+        fecharExclusao();
+        desenharTabela();
+    });
+
+    /* ----- Eventos gerais ----- */
+    document.getElementById("btn-novo").addEventListener("click", () => abrirFormulario());
+    document.getElementById("btn-cancelar").addEventListener("click", fecharFormulario);
+    document.getElementById("btn-excluir-cancelar").addEventListener("click", fecharExclusao);
+
+    [modalForm, modalExcluir].forEach(overlay => {
+        overlay.addEventListener("click", (e) => {
+            if (e.target === overlay) {
+                overlay.hidden = true;
+                idParaExcluir = null;
+            }
+        });
+    });
+
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+            fecharFormulario();
+            fecharExclusao();
+        }
+    });
+
+    busca.addEventListener("input", desenharTabela);
+    filtroCategoria.addEventListener("change", desenharTabela);
+    filtroStatus.addEventListener("change", desenharTabela);
+
+    /* ----- Início ----- */
+    desenharTabela();
+</script>
+
+</body>
+</html>

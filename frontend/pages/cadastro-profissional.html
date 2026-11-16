@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Cadastro de profissional | Ampara</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/style.css">
+
+    <style>
+        .cad-page { max-width: 720px; margin: 0 auto; padding: 40px 20px 70px; font-family: 'Poppins', sans-serif; color: #2d2540; }
+        .cad-page h1 { margin: 0 0 6px; font-size: 1.8rem; }
+        .cad-page .sub { margin: 0 0 24px; color: #7a7390; font-size: .95rem; line-height: 1.5; }
+
+        /* seletor usuário / profissional */
+        .perfil-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; padding: 5px; margin-bottom: 26px; border-radius: 999px; background: #f1edfb; }
+        .perfil-tab { padding: 11px 16px; border: 0; border-radius: 999px; background: transparent; color: #6b5fb0; font: 500 .92rem 'Poppins', sans-serif; cursor: pointer; }
+        .perfil-tab[aria-selected="true"] { background: #fff; color: #2d2540; box-shadow: 0 2px 8px rgba(40,30,80,.12); }
+
+        .cad-card { padding: 28px; border-radius: 22px; background: #fff; box-shadow: 0 8px 26px rgba(40,30,80,.09); }
+        .cad-card h2 { margin: 0 0 16px; font-size: 1.05rem; }
+        .cad-card h2:not(:first-child) { margin-top: 26px; }
+
+        .grade { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+        .campo { margin-bottom: 14px; }
+        .campo.cheio { grid-column: 1 / -1; }
+        .campo label { display: block; margin-bottom: 6px; font-size: .85rem; font-weight: 500; }
+        .campo input, .campo select, .campo textarea {
+            width: 100%; box-sizing: border-box; padding: 12px 14px;
+            border: 1.5px solid #ddd6f0; border-radius: 12px; background: #fff;
+            font: 400 .95rem 'Poppins', sans-serif; color: #2d2540;
+        }
+        .campo textarea { resize: vertical; min-height: 96px; }
+        .campo input:focus, .campo select:focus, .campo textarea:focus {
+            outline: none; border-color: #7c6bc4; box-shadow: 0 0 0 3px rgba(124,107,196,.2);
+        }
+        .campo small { display: block; margin-top: 4px; color: #8a8399; font-size: .76rem; }
+        .campo.erro input, .campo.erro select, .campo.erro textarea { border-color: #b3374a; }
+        .campo .msg-erro { margin-top: 4px; color: #b3374a; font-size: .78rem; min-height: 0; }
+
+        .termos { display: flex; gap: 10px; align-items: flex-start; margin: 6px 0 16px; font-size: .85rem; line-height: 1.5; color: #5b5470; }
+        .termos input { margin-top: 3px; }
+
+        .aviso { padding: 14px 18px; margin-bottom: 18px; border-radius: 14px; background: #eef8f1; color: #2f5d3d; font-size: .86rem; line-height: 1.5; }
+        .aviso.alerta { background: #fff4e0; color: #7a5200; }
+        .aviso.falha { background: #fbe6e9; color: #a02b3e; }
+
+        .btn { width: 100%; padding: 14px; border: 0; border-radius: 999px; background: #7c6bc4; color: #fff; font: 600 .95rem 'Poppins', sans-serif; cursor: pointer; transition: background .2s; }
+        .btn:hover { background: #6a59b3; }
+        .btn:disabled { opacity: .6; cursor: not-allowed; }
+
+        .rodape-form { margin-top: 18px; text-align: center; font-size: .88rem; color: #7a7390; }
+        .rodape-form a { color: #6b5fb0; font-weight: 500; }
+
+        .sucesso { text-align: center; padding: 20px 10px; }
+        .sucesso h2 { margin: 0 0 8px; }
+        .sucesso p { margin: 0 0 16px; color: #5b5470; line-height: 1.6; }
+        .sucesso .btn { display: inline-block; width: auto; padding: 12px 28px; text-decoration: none; }
+
+        [hidden] { display: none !important; }
+        @media (max-width: 620px) { .grade { grid-template-columns: 1fr; } }
+    </style>
+</head>
+
+<body>
+
+<header class="header">
+    <nav class="navbar" aria-label="Principal">
+        <a class="logo" href="../index.html"><img src="../assets/images/logo.png" alt="Ampara – página inicial"></a>
+        <ul class="nav-links">
+            <li><a href="../index.html">Início</a></li>
+            <li><a href="./saude-mental.html">Saúde Mental</a></li>
+            <li><a href="./reeduque-sua-mente.html">Reeduque sua mente</a></li>
+            <li><a href="./profissionais.html">Profissionais</a></li>
+            <li><a href="./voce-nao-esta-sozinho.html">Apoio</a></li>
+        </ul>
+        <a href="./converse-com-ampara.html" class="nav-button">Converse com a Ampara</a>
+    </nav>
+</header>
+
+<main class="cad-page">
+    <h1>Criar conta</h1>
+    <p class="sub">Escolha como você vai usar a Ampara. Profissionais de saúde mental têm um cadastro próprio, com os dados do registro profissional.</p>
+
+    <div class="perfil-tabs" role="tablist" aria-label="Tipo de conta">
+        <button type="button" class="perfil-tab" role="tab" id="tab-usuario" aria-selected="false">Sou usuário</button>
+        <button type="button" class="perfil-tab" role="tab" id="tab-profissional" aria-selected="true">Sou profissional</button>
+    </div>
+
+    <div class="cad-card">
+
+        <!-- ========== FORMULÁRIO ========== -->
+        <form id="form-prof" novalidate>
+            <div class="aviso" id="aviso-analise">
+                Após o cadastro, seu perfil passa por uma conferência do registro profissional antes de aparecer para os usuários.
+            </div>
+            <div class="aviso falha" id="aviso-falha" role="alert" hidden></div>
+
+            <h2>Dados de acesso</h2>
+            <div class="grade">
+                <div class="campo cheio">
+                    <label for="p-nome">Nome completo</label>
+                    <input type="text" id="p-nome" autocomplete="name" maxlength="120">
+                    <div class="msg-erro"></div>
+                </div>
+                <div class="campo cheio">
+                    <label for="p-email">E-mail</label>
+                    <input type="email" id="p-email" autocomplete="email" maxlength="160">
+                    <div class="msg-erro"></div>
+                </div>
+                <div class="campo">
+                    <label for="p-senha">Senha</label>
+                    <input type="password" id="p-senha" autocomplete="new-password" maxlength="72">
+                    <small>Mínimo de 8 caracteres.</small>
+                    <div class="msg-erro"></div>
+                </div>
+                <div class="campo">
+                    <label for="p-senha2">Confirmar senha</label>
+                    <input type="password" id="p-senha2" autocomplete="new-password" maxlength="72">
+                    <div class="msg-erro"></div>
+                </div>
+            </div>
+
+            <h2>Dados profissionais</h2>
+            <div class="grade">
+                <div class="campo">
+                    <label for="p-tipo">Profissão</label>
+                    <select id="p-tipo">
+                        <option value="">Selecione</option>
+                        <option value="Psicólogo(a)">Psicólogo(a)</option>
+                        <option value="Psiquiatra">Psiquiatra</option>
+                    </select>
+                    <div class="msg-erro"></div>
+                </div>
+                <div class="campo">
+                    <label for="p-registro">Registro profissional</label>
+                    <input type="text" id="p-registro" maxlength="30" placeholder="Ex.: CRP 06/123456">
+                    <small id="dica-registro">Informe o número do CRP ou CRM.</small>
+                    <div class="msg-erro"></div>
+                </div>
+                <div class="campo">
+                    <label for="p-especialidade">Especialidade</label>
+                    <select id="p-especialidade"><option value="">Selecione</option></select>
+                    <div class="msg-erro"></div>
+                </div>
+                <div class="campo">
+                    <label for="p-modalidade">Modalidade de atendimento</label>
+                    <select id="p-modalidade"><option value="">Selecione</option></select>
+                    <div class="msg-erro"></div>
+                </div>
+                <div class="campo">
+                    <label for="p-valor">Valor da sessão (R$)</label>
+                    <input type="number" id="p-valor" min="0" max="2000" step="0.01" inputmode="decimal">
+                    <div class="msg-erro"></div>
+                </div>
+                <div class="campo">
+                    <label for="p-disp">Disponibilidade</label>
+                    <input type="text" id="p-disp" maxlength="80" placeholder="Ex.: Seg a sex, 14h às 20h">
+                    <div class="msg-erro"></div>
+                </div>
+                <div class="campo cheio">
+                    <label for="p-bio">Sobre você</label>
+                    <textarea id="p-bio" maxlength="400" placeholder="Conte brevemente sua formação, abordagem e quem você atende."></textarea>
+                    <small>Até 400 caracteres. Aparece no seu cartão de profissional.</small>
+                    <div class="msg-erro"></div>
+                </div>
+            </div>
+
+            <label class="termos">
+                <input type="checkbox" id="p-termos">
+                <span>Declaro que as informações são verdadeiras e que meu registro profissional está ativo.</span>
+            </label>
+            <div class="campo" id="campo-termos"><div class="msg-erro"></div></div>
+
+            <button type="submit" class="btn" id="btn-enviar">Enviar cadastro</button>
+
+            <p class="rodape-form">Já tem conta? <a href="./login.html">Entrar</a></p>
+        </form>
+
+        <!-- ========== SUCESSO ========== -->
+        <div class="sucesso" id="sucesso" hidden>
+            <h2>Cadastro enviado!</h2>
+            <p id="sucesso-texto"></p>
+            <a class="btn" href="./login.html">Ir para o login</a>
+        </div>
+
+    </div>
+</main>
+
+<footer class="footer">
+    <div class="footer-content">
+        <img src="../assets/images/logo.png" alt="Logo Ampara">
+        <p>© 2026 Ampara — Projeto acadêmico de apoio à saúde mental.</p>
+        <span>O Ampara não substitui acompanhamento psicológico ou médico profissional.</span>
+    </div>
+</footer>
+
+<script src="../js/api.js"></script>
+<script src="../js/profissionais-dados.js"></script>
+<script>
+(function () {
+    'use strict';
+
+    /* Tela de cadastro do usuário comum: a aba "Criar conta" do login.html */
+    var PAGINA_CADASTRO_USUARIO = './login.html#cadastro';
+    /* Rota do back-end usada: POST /api/profissionais/cadastro (ver AmparaAPI.cadastrarProfissional em api.js) */
+
+    var $ = function (s) { return document.querySelector(s); };
+
+    /* ---------- seletor usuário / profissional ---------- */
+    $('#tab-usuario').addEventListener('click', function () {
+        window.location.href = PAGINA_CADASTRO_USUARIO;
+    });
+
+    /* ---------- listas de especialidade/modalidade ---------- */
+    if (typeof AMPARA_ESPECIALIDADES !== 'undefined') {
+        AMPARA_ESPECIALIDADES.forEach(function (e) { $('#p-especialidade').appendChild(new Option(e, e)); });
+    }
+    if (typeof AMPARA_MODALIDADES !== 'undefined') {
+        AMPARA_MODALIDADES.forEach(function (m) { $('#p-modalidade').appendChild(new Option(m, m)); });
+    }
+    /* Profissões: usa a mesma lista do painel admin (assim o cadastro aparece certo lá) */
+    if (typeof AMPARA_TIPOS !== 'undefined') {
+        var selTipo = $('#p-tipo');
+        while (selTipo.options.length > 1) selTipo.remove(1);
+        AMPARA_TIPOS.forEach(function (t) { selTipo.appendChild(new Option(t, t)); });
+    }
+
+    /* ---------- dica do registro conforme a profissão ---------- */
+    $('#p-tipo').addEventListener('change', function () {
+        var t = this.value.toLowerCase();
+        var dica = $('#dica-registro'), campo = $('#p-registro');
+        if (t.indexOf('psiq') !== -1) { dica.textContent = 'Informe o número do CRM.'; campo.placeholder = 'Ex.: CRM 123456/SP'; }
+        else if (t.indexOf('psic') !== -1) { dica.textContent = 'Informe o número do CRP.'; campo.placeholder = 'Ex.: CRP 06/123456'; }
+        else { dica.textContent = 'Informe a sigla do conselho e o número do registro.'; campo.placeholder = 'Ex.: CRP 06/123456'; }
+    });
+
+    /* ---------- validação ---------- */
+    function marcar(idCampo, texto) {
+        var caixa = document.getElementById(idCampo).closest('.campo');
+        caixa.classList.toggle('erro', !!texto);
+        caixa.querySelector('.msg-erro').textContent = texto || '';
+        return !texto;
+    }
+
+    function validar() {
+        var ok = true;
+        function v(id, texto) { if (!marcar(id, texto)) ok = false; }
+
+        var nome = $('#p-nome').value.trim();
+        v('p-nome', nome.split(/\s+/).length >= 2 ? '' : 'Informe nome e sobrenome.');
+
+        var email = $('#p-email').value.trim();
+        v('p-email', /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ? '' : 'Informe um e-mail válido.');
+
+        var s1 = $('#p-senha').value, s2 = $('#p-senha2').value;
+        v('p-senha', s1.length >= 8 ? '' : 'A senha precisa ter pelo menos 8 caracteres.');
+        v('p-senha2', s1 === s2 ? '' : 'As senhas não conferem.');
+
+        var tipo = $('#p-tipo').value;
+        v('p-tipo', tipo ? '' : 'Selecione a profissão.');
+
+        var reg = $('#p-registro').value.trim();
+        var regOk = /^[A-Za-z]{2,6}\s?[\d\/\-\.A-Za-z]{3,}$/.test(reg) && /\d/.test(reg);
+        v('p-registro', regOk ? '' : 'Informe o registro com a sigla do conselho e o número (ex.: CRP 06/123456).');
+
+        v('p-especialidade', $('#p-especialidade').value ? '' : 'Selecione a especialidade.');
+        v('p-modalidade', $('#p-modalidade').value ? '' : 'Selecione a modalidade.');
+
+        var valor = parseFloat($('#p-valor').value);
+        v('p-valor', (!isNaN(valor) && valor >= 0 && valor <= 2000) ? '' : 'Informe um valor entre 0 e 2000.');
+
+        v('p-disp', $('#p-disp').value.trim() ? '' : 'Informe sua disponibilidade.');
+
+        var bio = $('#p-bio').value.trim();
+        v('p-bio', bio.length >= 20 ? '' : 'Escreva pelo menos 20 caracteres.');
+
+        var termos = $('#p-termos').checked;
+        $('#campo-termos .msg-erro').textContent = termos ? '' : 'É preciso confirmar a declaração.';
+        if (!termos) ok = false;
+
+        return ok;
+    }
+
+    /* ---------- envio ---------- */
+    function mostrarFalha(texto) {
+        var a = $('#aviso-falha');
+        a.textContent = texto;
+        a.hidden = !texto;
+    }
+
+    function mostrarSucesso(texto) {
+        $('#form-prof').hidden = true;
+        $('#sucesso-texto').textContent = texto;
+        $('#sucesso').hidden = false;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /* Sem back-end: guarda só neste navegador, como "pendente", e SEM a senha.
+       Usa o mesmo armazenamento do painel admin (profissionais-dados.js), então o cadastro
+       aparece em "Gerenciar Profissionais" como "aguardando aprovação". */
+    function salvarLocalPendente(dados) {
+        var novo = {
+            id: Date.now(),
+            nome: dados.nome, tipo: dados.tipo, registro: dados.registro,
+            especialidade: dados.especialidade, modalidade: dados.modalidade,
+            valor: dados.valor, email: dados.email, telefone: '',
+            disponibilidade: dados.disponibilidade, bio: dados.bio,
+            status: 'pendente'
+        };
+        if (typeof carregarProfissionais === 'function' && typeof salvarProfissionais === 'function') {
+            var lista = carregarProfissionais();
+            lista.push(novo);
+            salvarProfissionais(lista);
+            return;
+        }
+        /* plano B, se profissionais-dados.js não carregou */
+        var chave = 'ampara_profissionais_pendentes', pend;
+        try { pend = JSON.parse(localStorage.getItem(chave) || '[]'); } catch (e) { pend = []; }
+        pend.push(novo);
+        try { localStorage.setItem(chave, JSON.stringify(pend)); } catch (e) { /* ignora */ }
+    }
+
+    $('#form-prof').addEventListener('submit', function (e) {
+        e.preventDefault();
+        mostrarFalha('');
+        if (!validar()) {
+            var primeiro = document.querySelector('.campo.erro input, .campo.erro select, .campo.erro textarea');
+            if (primeiro) primeiro.focus();
+            return;
+        }
+
+        var dados = {
+            perfil: 'profissional',
+            nome: $('#p-nome').value.trim(),
+            email: $('#p-email').value.trim().toLowerCase(),
+            senha: $('#p-senha').value,
+            tipo: $('#p-tipo').value,
+            registro: $('#p-registro').value.trim().toUpperCase(),
+            especialidade: $('#p-especialidade').value,
+            modalidade: $('#p-modalidade').value,
+            valor: parseFloat($('#p-valor').value),
+            disponibilidade: $('#p-disp').value.trim(),
+            bio: $('#p-bio').value.trim()
+        };
+
+        var btn = $('#btn-enviar');
+        btn.disabled = true;
+        btn.textContent = 'Enviando...';
+
+        AmparaAPI.cadastrarProfissional(dados).then(function () {
+            mostrarSucesso('Recebemos seus dados. Assim que o registro profissional for conferido, seu perfil aparece para os usuários e você poderá entrar com seu e-mail e senha.');
+        }).catch(function (erro) {
+            if (erro && erro.status === 409) {
+                mostrarFalha(erro.message || 'Já existe um cadastro com este e-mail.');
+            } else if (erro && (erro.status === 400 || erro.status === 422)) {
+                mostrarFalha(erro.message);
+            } else if (erro && erro.status >= 500) {
+                /* o servidor respondeu, mas deu erro: não esconde isso com o modo de teste */
+                mostrarFalha('O servidor não conseguiu salvar o cadastro. Tente novamente em instantes.');
+            } else {
+                /* sem resposta do servidor (desligado) ou rota ainda inexistente (404): modo de teste */
+                salvarLocalPendente(dados);
+                mostrarSucesso('Modo de teste: o servidor não respondeu ou ainda não tem a rota POST /api/profissionais/cadastro, então seus dados foram guardados só neste navegador, como pendentes (já aparecem em "Gerenciar Profissionais", no painel admin, para aprovação), e sem a senha. Para o login de profissional funcionar de verdade, o back-end precisa criar essa rota.');
+            }
+        }).then(function () {
+            btn.disabled = false;
+            btn.textContent = 'Enviar cadastro';
+        });
+    });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Área do profissional | Ampara</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/style.css">
+
+    <style>
+        .area-page { max-width: 1000px; margin: 0 auto; padding: 40px 20px 70px; font-family: 'Poppins', sans-serif; color: #2d2540; }
+
+        .area-top { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between; margin-bottom: 28px; }
+        .area-top h1 { margin: 0 0 4px; font-size: 1.8rem; }
+        .area-top p { margin: 0; color: #7a7390; font-size: .95rem; }
+        .btn-sair { padding: 10px 20px; border: 1.5px solid #ddd6f0; border-radius: 999px; background: #fff; color: #6b5fb0; font: 500 .9rem 'Poppins', sans-serif; cursor: pointer; }
+        .btn-sair:hover { background: #f1edfb; }
+
+        .area-tabs { display: inline-grid; grid-template-columns: 1fr 1fr; gap: 6px; padding: 5px; margin-bottom: 26px; border-radius: 999px; background: #f1edfb; }
+        .area-tab { padding: 10px 24px; border: 0; border-radius: 999px; background: transparent; color: #6b5fb0; font: 500 .92rem 'Poppins', sans-serif; cursor: pointer; }
+        .area-tab[aria-selected="true"] { background: #fff; color: #2d2540; box-shadow: 0 2px 8px rgba(40,30,80,.12); }
+
+        .area-aviso { padding: 14px 18px; margin-bottom: 22px; border-radius: 14px; background: #eef8f1; color: #2f5d3d; font-size: .88rem; line-height: 1.5; }
+        .area-aviso.erro { background: #fbe6e9; color: #a02b3e; }
+
+        .area-resumo { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; margin-bottom: 26px; }
+        .resumo-box { padding: 18px 20px; border-radius: 18px; background: #fff; box-shadow: 0 6px 20px rgba(40,30,80,.08); }
+        .resumo-box strong { display: block; font-size: 1.6rem; line-height: 1.2; }
+        .resumo-box span { color: #7a7390; font-size: .85rem; }
+
+        .secao-titulo { margin: 28px 0 14px; font-size: 1.1rem; }
+        .secao-titulo:first-child { margin-top: 0; }
+
+        .avatar { flex: 0 0 48px; width: 48px; height: 48px; display: grid; place-items: center; border-radius: 50%; background: linear-gradient(135deg, #b9a9f0, #8fd3b0); color: #fff; font-weight: 600; }
+        .consulta { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; justify-content: space-between; padding: 18px 20px; margin-bottom: 12px; border-radius: 18px; background: #fff; box-shadow: 0 6px 20px rgba(40,30,80,.08); }
+        .consulta-info { display: flex; gap: 14px; align-items: center; min-width: 0; }
+        .consulta-info h3 { margin: 0 0 3px; font-size: 1rem; }
+        .consulta-info p { margin: 0; color: #6b6580; font-size: .85rem; overflow-wrap: anywhere; }
+        .consulta-acoes { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+
+        .tag { padding: 4px 10px; border-radius: 999px; font-size: .75rem; font-weight: 500; }
+        .tag-verde { background: #e3f5ea; color: #2f6b45; }
+        .tag-roxo { background: #ece8fa; color: #5a4aa8; }
+        .tag-cinza { background: #f0eef5; color: #6b6580; }
+        .tag-vermelho { background: #fbe6e9; color: #a02b3e; }
+
+        .btn { padding: 10px 18px; border: 0; border-radius: 999px; background: #7c6bc4; color: #fff; font: 600 .88rem 'Poppins', sans-serif; cursor: pointer; transition: background .2s; }
+        .btn:hover { background: #6a59b3; }
+        .btn-perigo { background: #fbe6e9; color: #a02b3e; }
+        .btn-perigo:hover { background: #f5d3d9; }
+        .btn:disabled { opacity: .6; cursor: not-allowed; }
+
+        .vazio { padding: 36px 20px; text-align: center; color: #7a7390; background: #fff; border-radius: 20px; box-shadow: 0 8px 26px rgba(40,30,80,.07); }
+
+        .perfil-card { padding: 26px; border-radius: 20px; background: #fff; box-shadow: 0 8px 26px rgba(40,30,80,.09); }
+        .perfil-topo { display: flex; gap: 14px; align-items: center; margin-bottom: 20px; }
+        .perfil-topo h2 { margin: 0 0 4px; font-size: 1.2rem; }
+        .perfil-topo p { margin: 0; color: #8a8399; font-size: .85rem; }
+        .perfil-info { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 18px; }
+        .perfil-info div { padding: 10px 12px; border-radius: 12px; background: #f7f5fc; }
+        .perfil-info span { display: block; color: #8a8399; font-size: .72rem; }
+        .perfil-info strong { font-size: .9rem; overflow-wrap: anywhere; }
+        .perfil-bio { margin: 0 0 18px; color: #5b5470; font-size: .92rem; line-height: 1.6; }
+        .perfil-nota { margin: 0; color: #8a8399; font-size: .8rem; line-height: 1.5; }
+
+        [hidden] { display: none !important; }
+        @media (max-width: 620px) { .perfil-info { grid-template-columns: 1fr; } }
+    </style>
+</head>
+
+<body>
+
+<header class="header">
+    <nav class="navbar" aria-label="Principal">
+        <a class="logo" href="../index.html"><img src="../assets/images/logo.png" alt="Ampara – página inicial"></a>
+        <ul class="nav-links">
+            <li><a href="../index.html">Início</a></li>
+            <li><a href="./saude-mental.html">Saúde Mental</a></li>
+            <li><a href="./reeduque-sua-mente.html">Reeduque sua mente</a></li>
+            <li><a href="./profissionais.html">Profissionais</a></li>
+            <li><a href="./voce-nao-esta-sozinho.html">Apoio</a></li>
+        </ul>
+        <a href="./converse-com-ampara.html" class="nav-button">Converse com a Ampara</a>
+    </nav>
+</header>
+
+<main class="area-page" id="area" hidden>
+
+    <div class="area-top">
+        <div>
+            <h1 id="saudacao">Olá!</h1>
+            <p id="email-profissional"></p>
+        </div>
+        <button type="button" class="btn-sair" id="btn-sair">Sair</button>
+    </div>
+
+    <div class="area-resumo">
+        <div class="resumo-box"><strong id="n-proximas">–</strong><span>próximas consultas</span></div>
+        <div class="resumo-box"><strong id="n-historico">–</strong><span>no histórico</span></div>
+        <div class="resumo-box"><strong><span class="tag tag-verde" style="font-size:.8rem">Ativo</span></strong><span>perfil visível aos usuários</span></div>
+    </div>
+
+    <div class="area-tabs" role="tablist">
+        <button type="button" class="area-tab" role="tab" id="tab-consultas" aria-selected="true">Minhas consultas</button>
+        <button type="button" class="area-tab" role="tab" id="tab-perfil" aria-selected="false">Meu perfil</button>
+    </div>
+
+    <div class="area-aviso erro" id="aviso-erro" role="alert" hidden></div>
+
+    <!-- ========== CONSULTAS ========== -->
+    <section id="painel-consultas">
+        <h2 class="secao-titulo">Próximas consultas</h2>
+        <div id="lista-proximas"></div>
+
+        <h2 class="secao-titulo">Histórico</h2>
+        <div id="lista-historico"></div>
+    </section>
+
+    <!-- ========== PERFIL ========== -->
+    <section id="painel-perfil" hidden>
+        <div class="perfil-card">
+            <div class="perfil-topo">
+                <div class="avatar" id="pf-avatar"></div>
+                <div>
+                    <h2 id="pf-nome"></h2>
+                    <p id="pf-registro"></p>
+                </div>
+            </div>
+
+            <div class="perfil-info">
+                <div><span>Especialidade</span><strong id="pf-especialidade">–</strong></div>
+                <div><span>Modalidade</span><strong id="pf-modalidade">–</strong></div>
+                <div><span>Valor da sessão</span><strong id="pf-valor">–</strong></div>
+                <div><span>Disponibilidade</span><strong id="pf-disponibilidade">–</strong></div>
+            </div>
+
+            <p class="perfil-bio" id="pf-bio"></p>
+            <p class="perfil-nota">Para alterar seus dados ou desativar o perfil, fale com a equipe da Ampara.</p>
+        </div>
+    </section>
+
+</main>
+
+<footer class="footer">
+    <div class="footer-content">
+        <img src="../assets/images/logo.png" alt="Logo Ampara">
+        <p>© 2026 Ampara — Projeto acadêmico de apoio à saúde mental.</p>
+        <span>O Ampara não substitui acompanhamento psicológico ou médico profissional.</span>
+    </div>
+</footer>
+
+<script src="../js/api.js"></script>
+<script src="../js/profissionais-dados.js"></script>
+<script>
+(function () {
+    'use strict';
+
+    var $ = function (s) { return document.querySelector(s); };
+    var VOLTAR = './login.html?voltar=./area-profissional.html';
+
+    /* ---------- proteção: precisa estar logado como profissional ---------- */
+    var sessao = AmparaAPI.sessao();
+    if (!sessao || !sessao.token) { window.location.replace(VOLTAR); return; }
+    if (sessao.tipo !== 'profissional') { window.location.replace('./minha-area.html'); return; }
+
+    function primeiroNome(nome) {
+        var partes = String(nome || '').trim().split(/\s+/);
+        if (partes.length > 1 && /^(dr|dra|dr\(a\))\.?$/i.test(partes[0])) return partes[0] + ' ' + partes[1];
+        return partes[0] || '';
+    }
+
+    $('#area').hidden = false;
+    $('#saudacao').textContent = 'Olá, ' + primeiroNome(sessao.nome) + '!';
+    $('#email-profissional').textContent = sessao.email || '';
+
+    $('#btn-sair').addEventListener('click', function () {
+        AmparaAPI.limparSessao();
+        window.location.href = './login.html';
+    });
+
+    /* ---------- utilidades ---------- */
+    function criar(tag, classe, texto) {
+        var el = document.createElement(tag);
+        if (classe) el.className = classe;
+        if (texto !== undefined) el.textContent = texto;
+        return el;
+    }
+
+    function formatarDataHora(iso) {
+        var d = new Date(iso);
+        return d.toLocaleDateString('pt-BR', { weekday: 'short', day: '2-digit', month: 'long', year: 'numeric' })
+            + ' às ' + d.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+    }
+
+    function mostrarErro(texto) {
+        var a = $('#aviso-erro');
+        a.textContent = texto || '';
+        a.hidden = !texto;
+    }
+
+    /* sessão vencida ou conta desativada: volta ao login */
+    function tratarFalha(err) {
+        if (!AmparaAPI.sessao()) { window.location.replace(VOLTAR); return; }
+        mostrarErro(err && err.message ? err.message : 'Não foi possível falar com o servidor. Tente novamente.');
+    }
+
+    /* ---------- abas ---------- */
+    function aba(qual) {
+        var consultas = qual === 'consultas';
+        $('#tab-consultas').setAttribute('aria-selected', String(consultas));
+        $('#tab-perfil').setAttribute('aria-selected', String(!consultas));
+        $('#painel-consultas').hidden = !consultas;
+        $('#painel-perfil').hidden = consultas;
+    }
+    $('#tab-consultas').addEventListener('click', function () { aba('consultas'); });
+    $('#tab-perfil').addEventListener('click', function () { aba('perfil'); });
+
+    /* ---------- consultas ---------- */
+    var consultas = [];
+
+    function linhaConsulta(c, futura) {
+        var linha = criar('div', 'consulta');
+
+        var info = criar('div', 'consulta-info');
+        info.appendChild(criar('div', 'avatar', iniciaisDoNome(c.pacienteNome)));
+
+        var txt = criar('div');
+        txt.appendChild(criar('h3', '', c.pacienteNome));
+        txt.appendChild(criar('p', '', formatarDataHora(c.dataHora)));
+        txt.appendChild(criar('p', '', c.pacienteEmail));
+        if (c.obs) txt.appendChild(criar('p', '', 'Obs. do paciente: ' + c.obs));
+        info.appendChild(txt);
+        linha.appendChild(info);
+
+        var acoes = criar('div', 'consulta-acoes');
+        if (c.status === 'cancelada') {
+            acoes.appendChild(criar('span', 'tag tag-vermelho',
+                c.canceladaPor === 'profissional' ? 'Cancelada por você' : 'Cancelada pelo paciente'));
+        } else if (futura) {
+            acoes.appendChild(criar('span', 'tag tag-verde', 'Agendada'));
+            var cancelar = criar('button', 'btn btn-perigo', 'Cancelar');
+            cancelar.type = 'button';
+            cancelar.addEventListener('click', function () {
+                if (!confirm('Cancelar a consulta com ' + c.pacienteNome + '? O paciente verá que você cancelou.')) return;
+                cancelar.disabled = true;
+                mostrarErro('');
+                AmparaAPI.chamar('/api/profissional/consultas/' + c.id + '/cancelar', { method: 'PATCH' })
+                    .then(carregar)
+                    .catch(function (err) { cancelar.disabled = false; tratarFalha(err); });
+            });
+            acoes.appendChild(cancelar);
+        } else {
+            acoes.appendChild(criar('span', 'tag tag-cinza', 'Realizada'));
+        }
+        linha.appendChild(acoes);
+        return linha;
+    }
+
+    function desenharConsultas() {
+        var agora = Date.now();
+        var todas = consultas.slice().sort(function (a, b) { return new Date(a.dataHora) - new Date(b.dataHora); });
+
+        var proximas = todas.filter(function (c) { return c.status === 'agendada' && new Date(c.dataHora) >= agora; });
+        var historico = todas.filter(function (c) { return proximas.indexOf(c) === -1; }).reverse();
+
+        $('#n-proximas').textContent = proximas.length;
+        $('#n-historico').textContent = historico.length;
+
+        var boxP = $('#lista-proximas'), boxH = $('#lista-historico');
+        boxP.textContent = ''; boxH.textContent = '';
+
+        if (!proximas.length) boxP.appendChild(criar('div', 'vazio', 'Você ainda não tem consultas marcadas.'));
+        else proximas.forEach(function (c) { boxP.appendChild(linhaConsulta(c, true)); });
+
+        if (!historico.length) boxH.appendChild(criar('div', 'vazio', 'O histórico das suas consultas aparecerá aqui.'));
+        else historico.forEach(function (c) { boxH.appendChild(linhaConsulta(c, false)); });
+    }
+
+    function carregar() {
+        return AmparaAPI.chamar('/api/profissional/consultas')
+            .then(function (r) { mostrarErro(''); consultas = r.consultas || []; desenharConsultas(); })
+            .catch(tratarFalha);
+    }
+
+    /* ---------- perfil ---------- */
+    function desenharPerfil(p) {
+        $('#pf-avatar').textContent = iniciaisDoNome(p.nome);
+        $('#pf-nome').textContent = p.nome;
+        $('#pf-registro').textContent = p.tipo + ' • ' + p.registro;
+        $('#pf-especialidade').textContent = p.especialidade;
+        $('#pf-modalidade').textContent = p.modalidade;
+        $('#pf-valor').textContent = formatarValor(p.valor);
+        $('#pf-disponibilidade').textContent = p.disponibilidade || 'A combinar';
+        $('#pf-bio').textContent = p.bio;
+    }
+
+    /* confirma o token no servidor e traz os dados do perfil (se estiver vencido, o api.js limpa a sessão) */
+    AmparaAPI.chamar('/api/me')
+        .then(function (r) { if (r.profissional) desenharPerfil(r.profissional); })
+        .catch(tratarFalha);
+
+    /* ---------- início ---------- */
+    desenharConsultas();
+    carregar();
+})();
+</script>
+</body>
+</html>
