@@ -1,62 +1,211 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="9db5d8d2-5751-4379-90c7-2a997ee8230d" name="Changes" comment="" />
+    <list default="true" id="9db5d8d2-5751-4379-90c7-2a997ee8230d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/backend/scripts/criar-admin.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/seguranca.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/css/acesso-usuario.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/css/admin-paginas.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/css/profissionais.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/js/acesso-usuario.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/js/api.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/js/profissionais-dados.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/pages/gerenciar-conteudos.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/pages/gerenciar-profissionais.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/pages/login-admin.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/pages/login.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/pages/minha-area.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/pages/profissionais.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/chatbot.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/chatbot.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/pages/ansiedade.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/pages/ansiedade.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/pages/autoestima.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/pages/autoestima.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/pages/burnout.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/pages/burnout.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/pages/converse-com-ampara.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/pages/converse-com-ampara.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/pages/depressao.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/pages/depressao.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/pages/estresse.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/pages/estresse.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/pages/reeduque-sua-mente.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/pages/reeduque-sua-mente.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/pages/saude-mental.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/pages/saude-mental.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/pages/sono.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/pages/sono.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/pages/voce-nao-esta-sozinho.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/pages/voce-nao-esta-sozinho.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DatabaseLocalColorSettings">
+    <colors>
+      <entry key="4d22840e-1bd4-4012-aa34-763c60e4c344" value="" />
+    </colors>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="HTML File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 5,
-  "fromUser": false
-}]]></component>
+  <component name="NextEditCompletionFeaturesState">
+    <decayedCancelled>
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0" />
+      <entry key="S2" value="1.0" />
+      <entry key="S5" value="1.0" />
+      <entry key="S10" value="1.0" />
+      <entry key="S30" value="1.0000000012840067" />
+      <entry key="S60" value="1.000055327834915" />
+      <entry key="M2" value="1.0138924226267214" />
+      <entry key="M5" value="1.4534044476926677" />
+      <entry key="M10" value="2.590101431058585" />
+      <entry key="M15" value="3.5415756219113987" />
+      <entry key="M30" value="5.308949818648008" />
+      <entry key="H1" value="6.7931979240943" />
+      <entry key="H2" value="7.7834985432513255" />
+      <entry key="H4" value="8.359929301260607" />
+      <entry key="D1" value="8.888561438310811" />
+      <entry key="W1" value="8.983958891321745" />
+    </decayedCancelled>
+    <decayedSelected>
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="0.0" />
+      <entry key="S2" value="0.0" />
+      <entry key="S5" value="0.0" />
+      <entry key="S10" value="0.0" />
+      <entry key="S30" value="0.0" />
+      <entry key="S60" value="0.0" />
+      <entry key="M2" value="0.0" />
+      <entry key="M5" value="0.0" />
+      <entry key="M10" value="0.0" />
+      <entry key="M15" value="0.0" />
+      <entry key="M30" value="0.0" />
+      <entry key="H1" value="0.0" />
+      <entry key="H2" value="0.0" />
+      <entry key="H4" value="0.0" />
+      <entry key="D1" value="0.0" />
+      <entry key="W1" value="0.0" />
+    </decayedSelected>
+    <decayedShown>
+      <entry key="MS100" value="0.055939066932998265" />
+      <entry key="MS500" value="0.5617499515158225" />
+      <entry key="S2" value="0.8657365655196584" />
+      <entry key="S5" value="0.9439615492219673" />
+      <entry key="S10" value="0.9715768364992896" />
+      <entry key="S30" value="0.9904344045345527" />
+      <entry key="S60" value="0.9952604256288093" />
+      <entry key="M2" value="1.0114215558317474" />
+      <entry key="M5" value="1.4516008755101941" />
+      <entry key="M10" value="2.5881696425640324" />
+      <entry key="M15" value="3.5396972092402614" />
+      <entry key="M30" value="5.307439924422999" />
+      <entry key="H1" value="6.792194917285915" />
+      <entry key="H2" value="7.782912745864045" />
+      <entry key="H4" value="8.359611642362136" />
+      <entry key="D1" value="8.888504689331638" />
+      <entry key="W1" value="8.98395068592229" />
+    </decayedShown>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5,
+  &quot;fromUser&quot;: false
+}</component>
   <component name="ProjectId" id="3J66gU8pqKxQEcwuEe30I2ImVUA" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "JavaScript Debug.index.html.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "main",
-    "javascript.preferred.runtime.type.id": "node",
-    "kotlin-language-version-configured": "true",
-    "nodejs_interpreter_path": "C:/Users/Mique/AppData/Roaming/JetBrains/IntelliJIdea2026.2/node/versions/24.21.0/node",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "settings.javascript.runtime"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;JavaScript Debug.admin.html.executor&quot;: &quot;Coverage&quot;,
+    &quot;JavaScript Debug.index.html.executor&quot;: &quot;Coverage&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Node.js.seguranca.js.executor&quot;: &quot;Run&quot;,
+    &quot;Node.js.server.js.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;javascript.preferred.runtime.type.id&quot;: &quot;node&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Mique/Desktop/ampara-1&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_interpreter_path&quot;: &quot;C:/Users/Mique/AppData/Roaming/JetBrains/IntelliJIdea2026.2/node/versions/26.13.0/node&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\IntelliJ IDEA 2026.2.0.1\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;
   },
-  "keyToStringList": {
-    "ChangesTree.GroupingKeys": [
-      "directory",
-      "module",
-      "repository"
+  &quot;keyToStringList&quot;: {
+    &quot;ChangesTree.GroupingKeys&quot;: [
+      &quot;directory&quot;,
+      &quot;module&quot;,
+      &quot;repository&quot;
+    ],
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
-  <component name="RunManager">
+}</component>
+  <component name="RunManager" selected="Unknown.server.js1313332404">
+    <configuration name="ajustes.sql" type="DatabaseScript" editBeforeRun="true" temporary="true" nameIsGenerated="true">
+      <script-file value="$PROJECT_DIR$/backend/db/ajustes.sql" />
+      <script-mode>FILE</script-mode>
+      <method v="2" />
+    </configuration>
+    <configuration name="admin.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" engineId="98ca6316-2f89-46d9-a9e5-fa9e2b0625b3" uri="http://localhost:63342/ampara-1/frontend/admin.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
     <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" engineId="37cae5b9-e8b2-4949-9172-aafa37fbc09c" uri="http://localhost:63342/ampara-1/frontend/index.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
+    <configuration name="seguranca.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/backend/seguranca.js" working-dir="$PROJECT_DIR$/backend">
+      <method v="2" />
+    </configuration>
+    <configuration name="server.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/backend/server.js" working-dir="$PROJECT_DIR$/backend">
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Database Script.ajustes.sql" />
+      <item itemvalue="JavaScript Debug.admin.html" />
+      <item itemvalue="JavaScript Debug.index.html" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="JavaScript Debug.index.html" />
+        <item itemvalue="Database Script.ajustes.sql" />
+        <item itemvalue="JavaScript Debug.admin.html" />
       </list>
     </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-30f59d01ecdd-34e2839f716b-intellij.indexing.shared.core-IU-262.9437.185" />
-        <option value="bundled-js-predefined-d6986cc7102b-4abd2a77f808-JavaScript-IU-262.9437.185" />
+        <option value="bundled-jdk-30f59d01ecdd-2df11533d9fe-intellij.indexing.shared.core-IU-262.11879.100" />
+        <option value="bundled-js-predefined-d6986cc7102b-4abd2a77f808-JavaScript-IU-262.11879.100" />
       </set>
     </attachedChunks>
   </component>
